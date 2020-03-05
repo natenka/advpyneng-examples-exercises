@@ -1,0 +1,20 @@
+# OS generated files #
+# ######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Vim undo files. Python#
+# #######################
+*.un~
+*.pyc
+*.swp
+.mypy_cache
+
+
+#
+*.sqlite
