@@ -1,6 +1,6 @@
 import time
 import pytest
-import task_8_3
+import task_14_3
 from collections.abc import Generator
 from collections import namedtuple
 import sys
@@ -11,7 +11,7 @@ from common_functions import check_function_exists, check_function_params
 
 def test_func_created():
     '''Проверяем, что функция создана'''
-    check_function_exists(task_8_3, 'filter_data_by_attr')
+    check_function_exists(task_14_3, 'filter_data_by_attr')
 
 
 def test_filter_data_by_attr_is_generator():
@@ -22,7 +22,7 @@ def test_filter_data_by_attr_is_generator():
         Book(title='To Kill a Mockingbird', author='Harper Lee')
     ]
 
-    return_value = task_8_3.filter_data_by_attr(books, "author", "George Orwell")
+    return_value = task_14_3.filter_data_by_attr(books, "author", "George Orwell")
     assert isinstance(return_value, Generator), "Надо создать генератор"
 
 
@@ -39,7 +39,7 @@ def test_filter_data_by_attr_yield_value():
         Book(title='To Kill a Mockingbird', author='Harper Lee')
     ]
 
-    return_value = task_8_3.filter_data_by_attr(books, "author", "George Orwell")
+    return_value = task_14_3.filter_data_by_attr(books, "author", "George Orwell")
     orwell = list(return_value)
     correct_value = [
         Book(title='1984', author='George Orwell'),

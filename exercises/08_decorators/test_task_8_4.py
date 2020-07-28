@@ -1,6 +1,6 @@
 import time
 import pytest
-import task_7_4
+import task_8_4
 import sys
 sys.path.append('..')
 
@@ -9,11 +9,11 @@ from common_functions import check_function_exists, check_function_params
 
 def test_func_created():
     '''Проверяем, что декоратор создан'''
-    check_function_exists(task_7_4, 'retry')
+    check_function_exists(task_8_4, 'retry')
 
 
 def test_retry_success(capsys):
-    @task_7_4.retry(3)
+    @task_8_4.retry(3)
     def do_thing(a, b):
         print('done')
         return a + b
@@ -30,7 +30,7 @@ def test_retry_success(capsys):
 
 
 def test_retry_failed(capsys):
-    @task_7_4.retry(2)
+    @task_8_4.retry(2)
     def do_thing(a, b):
         print('done')
         return None

@@ -1,6 +1,6 @@
 import time
 import pytest
-import task_7_3
+import task_8_3
 import sys
 sys.path.append('..')
 
@@ -9,11 +9,11 @@ from common_functions import check_function_exists, check_function_params
 
 def test_func_created():
     '''Проверяем, что декоратор создан'''
-    check_function_exists(task_7_3, 'add_verbose')
+    check_function_exists(task_8_3, 'add_verbose')
 
 
 def test_add_verbose(capsys):
-    @task_7_3.add_verbose
+    @task_8_3.add_verbose
     def do_thing(a, b):
         return a + b
 
@@ -22,7 +22,7 @@ def test_add_verbose(capsys):
     assert return_value == 5
 
 def test_add_verbose_args(capsys):
-    @task_7_3.add_verbose
+    @task_8_3.add_verbose
     def do_thing(a, b):
         return a + b
 
@@ -35,7 +35,7 @@ def test_add_verbose_args(capsys):
 
 
 def test_add_verbose_kwargs(capsys):
-    @task_7_3.add_verbose
+    @task_8_3.add_verbose
     def do_thing(a, b):
         return a + b
 
@@ -48,7 +48,7 @@ def test_add_verbose_kwargs(capsys):
 
 
 def test_add_verbose_args_kwargs(capsys):
-    @task_7_3.add_verbose
+    @task_8_3.add_verbose
     def do_thing(a, b):
         return a + b
 

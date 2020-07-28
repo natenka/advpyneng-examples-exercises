@@ -1,6 +1,6 @@
 import time
 import pytest
-import task_7_1
+import task_8_1
 import sys
 sys.path.append('..')
 
@@ -9,12 +9,12 @@ from common_functions import check_function_exists, check_function_params
 
 def test_func_created():
     '''Проверяем, что декоратор и функция send_show_command созданы'''
-    check_function_exists(task_7_1, 'timecode')
-    check_function_exists(task_7_1, 'send_show_command')
+    check_function_exists(task_8_1, 'timecode')
+    check_function_exists(task_8_1, 'send_show_command')
 
 
 def test_timecode(capsys):
-    @task_7_1.timecode
+    @task_8_1.timecode
     def do_thing(a, b):
         time.sleep(2)
         return a + b

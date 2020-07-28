@@ -1,5 +1,5 @@
 import pytest
-import task_4_3
+import task_12_3
 import sys
 sys.path.append('..')
 
@@ -7,12 +7,12 @@ from common_functions import check_class_exists, check_attr_or_method
 
 
 def test_class_created():
-    check_class_exists(task_4_3, 'Topology')
+    check_class_exists(task_12_3, 'Topology')
 
 
 def test_attr_topology(topology_with_dupl_links):
     '''Проверяем, что в объекте Topology есть атрибут topology'''
-    top_with_data = task_4_3.Topology(topology_with_dupl_links)
+    top_with_data = task_12_3.Topology(topology_with_dupl_links)
     check_attr_or_method(top_with_data, attr='topology')
 
 
@@ -20,7 +20,7 @@ def test_sequence_special_methods_created():
     example = {('R1', 'Eth0/0'): ('SW1', 'Eth0/1'),
                ('R2', 'Eth0/0'): ('SW1', 'Eth0/2'),
                ('R3', 'Eth0/0'): ('SW1', 'Eth0/3')}
-    top = task_4_3.Topology(example)
+    top = task_12_3.Topology(example)
     check_attr_or_method(top, method='__getitem__')
     check_attr_or_method(top, method='__setitem__')
     check_attr_or_method(top, method='__delitem__')
@@ -32,7 +32,7 @@ def test_sequence_mixin_methods_created():
     example = {('R1', 'Eth0/0'): ('SW1', 'Eth0/1'),
                ('R2', 'Eth0/0'): ('SW1', 'Eth0/2'),
                ('R3', 'Eth0/0'): ('SW1', 'Eth0/3')}
-    top = task_4_3.Topology(example)
+    top = task_12_3.Topology(example)
     check_attr_or_method(top, method='keys')
     check_attr_or_method(top, method='get')
     check_attr_or_method(top, method='pop')
@@ -44,7 +44,7 @@ def test_methods():
     example = {('R1', 'Eth0/0'): ('SW1', 'Eth0/1'),
                ('R2', 'Eth0/0'): ('SW1', 'Eth0/2'),
                ('R3', 'Eth0/0'): ('SW1', 'Eth0/3')}
-    top = task_4_3.Topology(example)
+    top = task_12_3.Topology(example)
     # test __len__
     assert len(top.topology) == 3
 

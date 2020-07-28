@@ -1,5 +1,5 @@
 import pytest
-import task_7_2
+import task_8_2
 import sys
 sys.path.append('..')
 
@@ -8,11 +8,11 @@ from common_functions import check_function_exists, check_function_params
 
 def test_func_created():
     '''Проверяем, что декоратор создан'''
-    check_function_exists(task_7_2, 'all_args_str')
+    check_function_exists(task_8_2, 'all_args_str')
 
 
 def test_all_args_str():
-    @task_7_2.all_args_str
+    @task_8_2.all_args_str
     def do_thing(a, b):
         return f"{a.upper()} {b.upper()}"
 

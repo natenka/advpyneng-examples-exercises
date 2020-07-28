@@ -1,6 +1,6 @@
 import time
 import pytest
-import task_7_5a
+import task_8_5a
 import sys
 sys.path.append('..')
 
@@ -10,11 +10,11 @@ from common_functions import (check_function_exists, check_function_params,
 
 def test_func_created():
     '''Проверяем, что декоратор создан'''
-    check_function_exists(task_7_5a, 'count_calls')
+    check_function_exists(task_8_5a, 'count_calls')
 
 
 def test_attr_total_calls_created():
-    @task_7_5a.count_calls
+    @task_8_5a.count_calls
     def do_thing(a, b):
         return a + b
 
@@ -22,7 +22,7 @@ def test_attr_total_calls_created():
 
 
 def test_count_calls_basic():
-    @task_7_5a.count_calls
+    @task_8_5a.count_calls
     def do_thing(a, b):
         return a + b
 
@@ -33,7 +33,7 @@ def test_count_calls_basic():
 
 
 def test_count_calls_basic():
-    @task_7_5a.count_calls
+    @task_8_5a.count_calls
     def do_thing(a, b):
         return a + b
 

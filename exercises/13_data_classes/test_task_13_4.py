@@ -1,5 +1,5 @@
 import pytest
-import task_5_4
+import task_13_4
 import sys
 sys.path.append('..')
 
@@ -8,7 +8,7 @@ from common_functions import check_class_exists, check_attr_or_method
 
 def test_class_created():
     '''Проверяем, что класс создан'''
-    check_class_exists(task_5_4, 'IPv4Network')
+    check_class_exists(task_13_4, 'IPv4Network')
 
 
 def test_attributes_created():
@@ -16,7 +16,7 @@ def test_attributes_created():
     Проверяем, что у объекта есть атрибуты:
         address, mask, broadcast, allocated, unassigned
     '''
-    net = task_5_4.IPv4Network('100.7.1.0/26')
+    net = task_13_4.IPv4Network('100.7.1.0/26')
     check_attr_or_method(net, attr='network')
     check_attr_or_method(net, attr='broadcast')
     check_attr_or_method(net, attr='allocated')
@@ -27,13 +27,13 @@ def test_method_created():
     Проверяем, что у объекта есть метод:
         allocate
     '''
-    net = task_5_4.IPv4Network('100.7.1.0/26')
+    net = task_13_4.IPv4Network('100.7.1.0/26')
     check_attr_or_method(net, method='allocate')
 
 
 def test_returned_types():
     '''Проверяем работу объекта'''
-    net = task_5_4.IPv4Network('100.7.1.0/26')
+    net = task_13_4.IPv4Network('100.7.1.0/26')
     assert net.allocated == [], "По умолчанию allocated должен содержать пустой список"
     assert isinstance(net.unassigned, list), "unassigned должен содержать список IP-адресов"
     assert type(net.hosts) == list, "Метод hosts должен возвращать список"
@@ -41,7 +41,7 @@ def test_returned_types():
 
 def test_address_allocation():
     '''Проверяем работу объекта'''
-    net = task_5_4.IPv4Network('100.7.1.0/26')
+    net = task_13_4.IPv4Network('100.7.1.0/26')
     assert len(net.hosts) == 62, "В данной сети должно быть 62 хоста"
     assert net.broadcast == '100.7.1.63', "Broadcast адрес для этой сети 100.7.1.63"
 

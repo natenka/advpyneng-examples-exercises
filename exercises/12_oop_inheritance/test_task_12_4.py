@@ -1,5 +1,5 @@
 import pytest
-import task_4_4
+import task_12_4
 import sys
 sys.path.append('..')
 
@@ -7,11 +7,11 @@ from common_functions import check_class_exists, check_attr_or_method
 
 
 def test_class_created():
-    check_class_exists(task_4_4, 'OrderingMixin')
+    check_class_exists(task_12_4, 'OrderingMixin')
 
 
 def test_special_methods_created():
-    class IntTest(task_4_4.OrderingMixin):
+    class IntTest(task_12_4.OrderingMixin):
         def __init__(self, number):
             self._number = number
 
@@ -29,7 +29,7 @@ def test_special_methods_created():
 
 
 def test_methods():
-    class IntTest(task_4_4.OrderingMixin):
+    class IntTest(task_12_4.OrderingMixin):
         def __init__(self, number):
             self._number = number
 
@@ -49,7 +49,7 @@ def test_methods():
 
 
 def test_methods():
-    class DoThing(task_4_4.OrderingMixin):
+    class DoThing(task_12_4.OrderingMixin):
         def __init__(self, num):
             self.num = num
 

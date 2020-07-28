@@ -1,6 +1,6 @@
 import time
 import pytest
-import task_8_1b
+import task_14_1b
 from collections.abc import Generator
 import sys
 sys.path.append('..')
@@ -10,16 +10,16 @@ from common_functions import check_function_exists, check_function_params
 
 def test_func_created():
     '''Проверяем, что функция создана'''
-    check_function_exists(task_8_1b, 'get_intf_ip_from_files')
+    check_function_exists(task_14_1b, 'get_intf_ip_from_files')
 
 
 def test_get_intf_ip_from_files_is_generator():
-    return_value = task_8_1b.get_intf_ip_from_files('config_r1.txt')
+    return_value = task_14_1b.get_intf_ip_from_files('config_r1.txt')
     assert isinstance(return_value, Generator), "Надо создать генератор"
 
 
 def test_get_intf_ip_from_files_yield_value():
-    return_value = task_8_1b.get_intf_ip_from_files('config_r1.txt')
+    return_value = task_14_1b.get_intf_ip_from_files('config_r1.txt')
     first_dict = next(return_value)
     assert 'PE_r1' in first_dict, "Функция вернула неправильный результат"
 
@@ -60,11 +60,11 @@ def test_get_intf_ip_from_files_new_file(tmpdir):
 
     # записываем строки во временные файлы
     temp_dir = tmpdir.mkdir("test_tasks")
-    dest_filename1 = temp_dir.join("task_8_1b_1.txt")
+    dest_filename1 = temp_dir.join("task_14_1b_1.txt")
     dest_filename1.write(config1)
-    dest_filename2 = temp_dir.join("task_8_1b_2.txt")
+    dest_filename2 = temp_dir.join("task_14_1b_2.txt")
     dest_filename2.write(config2)
     # проверяем результат
-    return_value = task_8_1b.get_intf_ip_from_files(dest_filename1, dest_filename2)
+    return_value = task_14_1b.get_intf_ip_from_files(dest_filename1, dest_filename2)
     assert list(return_value) == correct_results, "Функция вернула неправильный результат"
 

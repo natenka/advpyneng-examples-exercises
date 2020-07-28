@@ -1,6 +1,6 @@
 import time
 import pytest
-import task_8_2
+import task_14_2
 from collections.abc import Generator
 import sys
 sys.path.append('..')
@@ -10,16 +10,16 @@ from common_functions import check_function_exists, check_function_params
 
 def test_func_created():
     '''Проверяем, что функция создана'''
-    check_function_exists(task_8_2, 'read_file_in_chunks')
+    check_function_exists(task_14_2, 'read_file_in_chunks')
 
 
 def test_read_file_in_chunks_is_generator():
-    return_value = task_8_2.read_file_in_chunks('config_r1.txt', 2)
+    return_value = task_14_2.read_file_in_chunks('config_r1.txt', 2)
     assert isinstance(return_value, Generator), "Надо создать генератор"
 
 
 def test_read_file_in_chunks_yield_value():
-    return_value = task_8_2.read_file_in_chunks('config_r1.txt', 5)
+    return_value = task_14_2.read_file_in_chunks('config_r1.txt', 5)
     first_chunk = next(return_value)
     correct_value = (
         'Current configuration : 4052 bytes\n'
@@ -51,10 +51,10 @@ def test_read_file_in_chunks_new_file(tmpdir):
     )
 
     # записываем строки во временный файл
-    dest_filename = tmpdir.mkdir("test_tasks").join("task_8_2.txt")
+    dest_filename = tmpdir.mkdir("test_tasks").join("task_14_2.txt")
     dest_filename.write(config1)
     # проверяем результат
-    return_value = task_8_2.read_file_in_chunks(dest_filename, 2)
+    return_value = task_14_2.read_file_in_chunks(dest_filename, 2)
     first_chunk = next(return_value)
     assert first_chunk == correct_value, "Функция вернула неправильный результат"
 

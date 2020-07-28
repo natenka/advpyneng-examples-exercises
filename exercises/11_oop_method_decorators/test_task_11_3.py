@@ -1,5 +1,5 @@
 import pytest
-import task_3_3
+import task_11_3
 import sys
 sys.path.append('..')
 
@@ -8,7 +8,7 @@ from common_functions import check_class_exists, check_attr_or_method, get_reach
 
 def test_class_created():
     '''Проверяем, что класс создан'''
-    check_class_exists(task_3_3, 'User')
+    check_class_exists(task_11_3, 'User')
 
 
 def test_methods_created():
@@ -16,13 +16,13 @@ def test_methods_created():
     Проверяем, что у объекта есть переменные:
         _ping, scan
     '''
-    user = task_3_3.User('testuser')
+    user = task_11_3.User('testuser')
     check_attr_or_method(user, attr='username')
 
 
 def test_username():
     '''Проверяем работу объекта'''
-    user = task_3_3.User('testuser')
+    user = task_11_3.User('testuser')
     assert user.username == 'testuser'
 
     # test user.username rewrite
@@ -35,7 +35,7 @@ def test_username():
 
 
 def test_password_read_and_set(capsys):
-    user = task_3_3.User('testuser')
+    user = task_11_3.User('testuser')
     correct_password = 's1sfsaghjdfsdfsaf'
     try:
         user.password

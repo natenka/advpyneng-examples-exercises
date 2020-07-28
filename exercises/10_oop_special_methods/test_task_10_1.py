@@ -1,5 +1,5 @@
 import pytest
-import task_2_1
+import task_10_1
 import sys
 sys.path.append('..')
 
@@ -8,11 +8,11 @@ from common_functions import check_class_exists, check_attr_or_method
 
 def test_class_created():
     '''Проверяем, что класс создан'''
-    check_class_exists(task_2_1, 'IPv4Network')
+    check_class_exists(task_10_1, 'IPv4Network')
 
 
 def test_sequence_special_methods_created():
-    net = task_2_1.IPv4Network('100.7.1.0/29')
+    net = task_10_1.IPv4Network('100.7.1.0/29')
     check_attr_or_method(net, method='__getitem__')
     check_attr_or_method(net, method='__len__')
     check_attr_or_method(net, method='__contains__')
@@ -22,7 +22,7 @@ def test_sequence_special_methods_created():
 
 
 def test_sequence_special_methods():
-    net = task_2_1.IPv4Network('100.7.1.0/29')
+    net = task_10_1.IPv4Network('100.7.1.0/29')
     # test __getitem__
     assert net[1] == '100.7.1.2', "В сети 100.7.1.0/29 под индексом 1 должен находиться адрес 100.7.1.2"
     assert net[-1] == '100.7.1.6', "В сети 100.7.1.0/29 под индексом -1 должен находиться адрес100.7.1.6"
