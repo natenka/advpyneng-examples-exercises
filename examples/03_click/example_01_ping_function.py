@@ -1,6 +1,10 @@
 import subprocess
+import click
 
 
+@click.command()
+@click.argument("ip_address")
+@click.option("--count", "-c", default=2, type=int, help="Number of packets")
 def ping_ip(ip_address, count):
     """
     Ping IP address and return True/False
@@ -10,17 +14,14 @@ def ping_ip(ip_address, count):
         shell=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
+        encoding="utf-8",
     )
     if reply.returncode == 0:
-        return True
+        print(f"IP address {ip_address} is reachable")
     else:
-        return False
+        print(f"IP address {ip_address} is unreachable")
 
 
 if __name__ == "__main__":
-    ip = "8.8.8.8"
-    if ping_ip(ip, count=3):
-        print(f"IP-адрес {ip:15} пингуется")
-    else:
-        print(f"IP-адрес {ip:15} не пингуется")
+    ping_ip()
 
