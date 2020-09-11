@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 13.2
 
 Дополнить класс IPAddress: добавить метод, который позволит
@@ -21,7 +21,7 @@ In [10]: ip2 = ip1 + 5
 In [11]: isinstance(ip2, IPAddress)
 Out[11]: True
 
-'''
+"""
 import ipaddress
 from dataclasses import dataclass, field
 
@@ -34,4 +34,3 @@ class IPAddress:
 
     def __post_init__(self):
         self._ip = int(ipaddress.ip_address(self.ip))
-

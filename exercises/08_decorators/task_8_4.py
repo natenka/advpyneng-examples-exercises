@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 8.4
 
 Создать декоратор retry, который выполняет декорируемую функцию повторно,
@@ -38,22 +38,25 @@ In [5]: send_show_command(device_params, 'sh clock')
 
 Тест берет значения из словаря device_params в этом файле, поэтому если
 для заданий используются другие адреса/логины, надо заменить их в словаре.
-'''
+"""
 
-from netmiko import (ConnectHandler, NetMikoAuthenticationException,
-                     NetMikoTimeoutException)
+from netmiko import (
+    ConnectHandler,
+    NetMikoAuthenticationException,
+    NetMikoTimeoutException,
+)
 
 device_params = {
-    'device_type': 'cisco_ios',
-    'ip': '192.168.100.1',
-    'username': 'cisco',
-    'password': 'cisco',
-    'secret': 'cisco'
+    "device_type": "cisco_ios",
+    "ip": "192.168.100.1",
+    "username": "cisco",
+    "password": "cisco",
+    "secret": "cisco",
 }
 
 
 def send_show_command(device, show_command):
-    print('Подключаюсь к', device['ip'])
+    print("Подключаюсь к", device["ip"])
     try:
         with ConnectHandler(**device) as ssh:
             ssh.enable()
@@ -64,5 +67,4 @@ def send_show_command(device, show_command):
 
 
 if __name__ == "__main__":
-    output = send_show_command(device_params, 'sh clock')
-
+    output = send_show_command(device_params, "sh clock")

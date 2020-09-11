@@ -1,13 +1,21 @@
 import pytest
 import task_12_4
 import sys
-sys.path.append('..')
+
+sys.path.append("..")
 
 from common_functions import check_class_exists, check_attr_or_method
 
 
+# Проверка что тест вызван через pytest ..., а не python ...
+from _pytest.assertion.rewrite import AssertionRewritingHook
+
+if not isinstance(__loader__, AssertionRewritingHook):
+    print(f"Тесты нужно вызывать используя такое выражение:\npytest {__file__}\n\n")
+
+
 def test_class_created():
-    check_class_exists(task_12_4, 'OrderingMixin')
+    check_class_exists(task_12_4, "OrderingMixin")
 
 
 def test_special_methods_created():
@@ -22,10 +30,10 @@ def test_special_methods_created():
             return self._number < other._number
 
     int1 = IntTest(5)
-    check_attr_or_method(int1, method='__ge__')
-    check_attr_or_method(int1, method='__ne__')
-    check_attr_or_method(int1, method='__le__')
-    check_attr_or_method(int1, method='__gt__')
+    check_attr_or_method(int1, method="__ge__")
+    check_attr_or_method(int1, method="__ne__")
+    check_attr_or_method(int1, method="__le__")
+    check_attr_or_method(int1, method="__gt__")
 
 
 def test_methods():
@@ -76,4 +84,3 @@ def test_methods():
     assert big_num > small_num
     assert big_num >= small_num
     assert big_num != small_num
-

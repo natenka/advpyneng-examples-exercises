@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 8.3
 
 Создать декоратор add_verbose, который добавляет в функцию
@@ -48,18 +48,17 @@ In [8]: print(send_show_command(device_params, 'sh clock', verbose=False))
 
 Тест берет значения из словаря device_params в этом файле, поэтому если
 для заданий используются другие адреса/логины, надо заменить их в словаре.
-'''
+"""
 
 from netmiko import ConnectHandler
 
 device_params = {
-    'device_type': 'cisco_ios',
-    'ip': '192.168.100.1',
-    'username': 'cisco',
-    'password': 'cisco',
-    'secret': 'cisco'
+    "device_type": "cisco_ios",
+    "ip": "192.168.100.1",
+    "username": "cisco",
+    "password": "cisco",
+    "secret": "cisco",
 }
-
 
 
 def send_show_command(params, command):
@@ -67,5 +66,3 @@ def send_show_command(params, command):
         ssh.enable()
         result = ssh.send_command(command)
     return result
-
-

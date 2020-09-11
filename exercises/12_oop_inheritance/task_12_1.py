@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 12.1
 
 Создать класс CiscoTelnet, который наследует класс TelnetBase из файла base_telnet_class.py.
@@ -37,4 +37,4 @@ Out[4]: 'conf t\r\nEnter configuration commands, one per line.  End with CNTL/Z.
 
 Тест берет значения из файла devices.yaml, поэтому если
 для заданий используются другие адреса/логины, надо заменить их там.
-'''
+"""

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 17.5
 
 Создать сопрограмму (coroutine) configure_router. Сопрограмма подключается
@@ -39,8 +39,8 @@ R1(config)#a
 и создавать дополнительные функции.
 
 Для заданий в этом разделе нет тестов!
-'''
+"""
 
 # списки команд с ошибками и без:
-commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
-correct_commands = ['logging buffered 20010', 'ip http server']
+commands_with_errors = ["logging 0255.255.1", "logging", "a"]
+correct_commands = ["logging buffered 20010", "ip http server"]

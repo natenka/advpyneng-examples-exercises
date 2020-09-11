@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 17.1
 
 Создать сопрограмму (coroutine) send_config_commands. Сопрограмма
@@ -39,13 +39,14 @@ Out[5]: 'conf t\r\nEnter configuration commands, one per line.  End with CNTL/Z.
 При необходимости можно создавать дополнительные функции.
 
 Для заданий в этом разделе нет тестов!
-'''
+"""
 import asyncio
 import asyncssh
 
 
-r1 = {'host': '192.168.100.1',
-      'username': 'cisco',
-      'password': 'cisco',
-      'enable_password': 'cisco'}
-
+r1 = {
+    "host": "192.168.100.1",
+    "username": "cisco",
+    "password": "cisco",
+    "enable_password": "cisco",
+}

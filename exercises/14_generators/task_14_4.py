@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 14.4
 
 Переделать код функции send_show_command_to_devices таким образом, чтобы
@@ -12,7 +12,7 @@
 
 Проверить работу генератора на устройствах из файла devices.yaml.
 Для этого задания нет теста!
-'''
+"""
 from itertools import repeat
 from concurrent.futures import ThreadPoolExecutor
 
@@ -31,12 +31,13 @@ def send_show_command(device, command):
 def send_show_command_to_devices(devices, command, filename, limit=3):
     with ThreadPoolExecutor(max_workers=limit) as executor:
         results = executor.map(send_show_command, devices, repeat(command))
-    with open(filename, 'w') as f:
+    with open(filename, "w") as f:
         for output in results:
             f.write(output)
 
+
 if __name__ == "__main__":
     command = "sh ip int br"
-    with open('devices.yaml') as f:
+    with open("devices.yaml") as f:
         devices = yaml.safe_load(f)
-    send_show_command_to_devices(devices, command, 'result.txt')
+    send_show_command_to_devices(devices, command, "result.txt")

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 13.3
 
 Дополнить класс Book: добавить метод to_dict.
@@ -20,8 +20,9 @@ Out[5]: {'title': 'Good Omens', 'price': 35.0, 'quantity': 124, 'total': 4340.0}
 Обратите внимание, что в словаре не только простые переменные, но и переменные,
 которые созданы через property.
 
-'''
+"""
 from dataclasses import dataclass, field
+
 
 @dataclass
 class Book:
@@ -41,7 +42,7 @@ class Book:
     @price.setter
     def price(self, value):
         if not isinstance(value, (int, float)):
-            raise TypeError('Значение должно быть числом')
+            raise TypeError("Значение должно быть числом")
         if not value >= 0:
-            raise ValueError('Значение должно быть положительным')
+            raise ValueError("Значение должно быть положительным")
         self._price = float(value)

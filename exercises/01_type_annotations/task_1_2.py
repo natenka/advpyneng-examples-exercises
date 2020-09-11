@@ -2,38 +2,41 @@
 """
 Задание 1.2
 
-Написать аннотацию для всех методов класса IPv4Network:
+Написать аннотацию для функций send_show и send_command_to_devices:
 аннотация должна описывать параметры и возвращаемое значение.
 
 Проверить код с помощью mypy, если возникли какие-то ошибки, исправить их.
 
-Для заданий в этом разделе нет тестов!
 """
 
-import ipaddress
+from concurrent.futures import ThreadPoolExecutor
+from pprint import pprint
+from itertools import repeat
+import yaml
+from netmiko import ConnectHandler
+from netmiko.ssh_exception import SSHException
 
 
-class IPv4Network:
-    def __init__(self, network):
-        self._net = ipaddress.ip_network(network)
-        self.address = str(self._net.network_address)
-        self.mask = self._net.prefixlen
-        self.broadcast = str(self._net.broadcast_address)
-        self.allocated = []
+def send_show(device_dict, command):
+    try:
+        with ConnectHandler(**device_dict) as ssh:
+            ssh.enable()
+            result = ssh.send_command(command)
+        return result
+    except SSHException as error:
+        return str(error)
 
-    def hosts(self):
-        return [str(ip) for ip in self._net.hosts()]
 
-    def allocate(self, ip):
-        self.allocated.append(ip)
-
-    def unassigned(self):
-        return [ip for ip in self.hosts() if ip not in self.allocated]
+def send_command_to_devices(devices, command, max_workers=3):
+    data = {}
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        result = executor.map(send_show, devices, repeat(command))
+        for device, output in zip(devices, result):
+            data[device["host"]] = output
+    return data
 
 
 if __name__ == "__main__":
-    net1 = IPv4Network("10.1.1.0/28")
-    all_hosts = net1.hosts()
-    net1.allocate("10.1.1.1")
-    net1.allocate("10.1.1.4")
-    print(net1.allocated)
+    with open("devices.yaml") as f:
+        devices = yaml.safe_load(f)
+    pprint(send_command_to_devices(devices, "sh ip int br"))

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 8.6
 
 Создать декоратор total_order, который добавляет к классу методы:
@@ -46,7 +46,7 @@ Out[10]: False
 In [11]: ip1 != ip2
 Out[11]: True
 
-'''
+"""
 
 import ipaddress
 
@@ -63,4 +63,3 @@ class IPAddress:
 
     def __lt__(self, other):
         return self._ip < other._ip
-

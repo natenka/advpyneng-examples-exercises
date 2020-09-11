@@ -3,16 +3,15 @@ import telnetlib
 
 
 class TelnetBase:
-
-    def __init__(self, ip, username, password, encoding='ascii'):
+    def __init__(self, ip, username, password, encoding="ascii"):
         self.ip = ip
         self.encoding = encoding
         self.prompt = None
 
         self._telnet = telnetlib.Telnet(ip)
-        self._read_until_regex('Username:')
+        self._read_until_regex("Username:")
         self._write_line(username)
-        self._read_until_regex('Password:')
+        self._read_until_regex("Password:")
         self._write_line(password)
         if not self.prompt:
             time.sleep(1)
@@ -41,7 +40,7 @@ class TelnetBase:
         оборудование строку преобразованную в байты
         и добавляет перевод строки в конце.
         """
-        self._telnet.write(line.encode(self.encoding) + b'\n')
+        self._telnet.write(line.encode(self.encoding) + b"\n")
 
     def _read_until_regex(self, regex, timeout=30):
         """
@@ -50,6 +49,6 @@ class TelnetBase:
         считанный на данный момент.
         """
         regex_idx, match, output = self._telnet.expect(
-            [regex.encode(self.encoding)], timeout=timeout)
+            [regex.encode(self.encoding)], timeout=timeout
+        )
         return output.decode(self.encoding)
-

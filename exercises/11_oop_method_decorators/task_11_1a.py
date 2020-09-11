@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 11.1a
 
 Скопировать класс IPv4Network из задания 11.1.
@@ -13,4 +13,4 @@ In [3]: net2 = IPv4Network.from_tuple(('10.1.1.0', 29))
 In [4]: net2
 Out[4]: IPv4Network(10.1.1.0/29)
 
-'''
+"""

@@ -2,40 +2,38 @@
 """
 Задание 1.1
 
-Написать аннотацию для функций send_show и send_command_to_devices:
+Написать аннотацию для всех методов класса IPv4Network:
 аннотация должна описывать параметры и возвращаемое значение.
 
 Проверить код с помощью mypy, если возникли какие-то ошибки, исправить их.
 
-Для заданий в этом разделе нет тестов!
 """
-
-from concurrent.futures import ThreadPoolExecutor
-from pprint import pprint
-import time
-from itertools import repeat
-
-import yaml
-from netmiko import ConnectHandler, NetMikoAuthenticationException
+import ipaddress
 
 
-def send_show(device_dict, command):
-    with ConnectHandler(**device_dict) as ssh:
-        ssh.enable()
-        result = ssh.send_command(command)
-    return result
+class IPv4Network:
+    def __init__(self, network):
+        self.network = network
+        address, mask = network.split("/")
+        self.network_address = address
+        self.mask = int(mask)
+        self.bin_mask = "1" * self.mask + "0" * (32 - self.mask)
 
+    def hosts(self):
+        net = ipaddress.ip_network(self.network)
+        return [str(ip) for ip in net.hosts()]
 
-def send_command_to_devices(devices, command, max_workers=3):
-    data = {}
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        result = executor.map(send_show, devices, repeat(command))
-        for device, output in zip(devices, result):
-            data[device["host"]] = output
-    return data
+    def __repr__(self):
+        return f"Network('{self.network}')"
+
+    def __len__(self):
+        return len(self.hosts())
+
+    def __iter__(self):
+        return iter(self.hosts())
 
 
 if __name__ == "__main__":
-    with open("devices.yaml") as f:
-        devices = yaml.safe_load(f)
-    pprint(send_command_to_devices(devices, "sh ip int br"))
+    net1 = IPv4Network("10.1.1.0/28")
+    all_hosts = net1.hosts()
+    print(all_hosts)

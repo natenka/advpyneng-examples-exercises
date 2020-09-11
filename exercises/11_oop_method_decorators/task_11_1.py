@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 11.1
 
 Скопировать класс IPv4Network из задания 9.1.
@@ -31,4 +31,4 @@ AttributeError                            Traceback (most recent call last)
 
 AttributeError: can't set attribute
 
-'''
+"""

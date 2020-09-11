@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 17.5a
 
 Создать сопрограмму (coroutine) log_device_configuration.
@@ -27,15 +27,18 @@
 и создавать дополнительные функции.
 
 Для заданий в этом разделе нет тестов!
-'''
+"""
 
-ospf = ['router ospf 55',
-        'auto-cost reference-bandwidth 1000000',
-        'network 0.0.0.0 255.255.255.255 area 0']
-logging_with_error = 'logging 0255.255.1'
-logging_correct = 'logging buffered 20010'
+ospf = [
+    "router ospf 55",
+    "auto-cost reference-bandwidth 1000000",
+    "network 0.0.0.0 255.255.255.255 area 0",
+]
+logging_with_error = "logging 0255.255.1"
+logging_correct = "logging buffered 20010"
 
-commands = {'192.168.100.2': logging_correct,
-            '192.168.100.3': logging_with_error,
-            '192.168.100.1': ospf}
-
+commands = {
+    "192.168.100.2": logging_correct,
+    "192.168.100.3": logging_with_error,
+    "192.168.100.1": ospf,
+}

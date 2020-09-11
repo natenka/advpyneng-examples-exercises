@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 12.5
 
 Создать примесь InheritanceMixin с двумя методами:
@@ -24,9 +24,10 @@ Out[5]: [__main__.A, __main__.InheritanceMixin, object]
 В задании заготовлена иерархия классов, надо сделать так, чтобы у всех
 этих классов повились методы subclasses и superclasses.
 Определение классов можно менять.
-'''
+"""
 
-class A():
+
+class A:
     pass
 
 
@@ -34,10 +35,9 @@ class B(A):
     pass
 
 
-class C():
+class C:
     pass
 
 
 class D(A, C):
     pass
-

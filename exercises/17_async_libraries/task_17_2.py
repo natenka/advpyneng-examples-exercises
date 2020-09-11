@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 17.2
 
 Создать сопрограмму (coroutine) configure_devices. Сопрограмма
@@ -19,8 +19,9 @@
 и создавать дополнительные функции.
 
 Для заданий в этом разделе нет тестов!
-'''
-commands = ['router ospf 55',
-            'auto-cost reference-bandwidth 1000000',
-            'network 0.0.0.0 255.255.255.255 area 0']
-
+"""
+commands = [
+    "router ospf 55",
+    "auto-cost reference-bandwidth 1000000",
+    "network 0.0.0.0 255.255.255.255 area 0",
+]

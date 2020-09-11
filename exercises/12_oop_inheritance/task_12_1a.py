@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 12.1a
 
 Скопировать класс CiscoTelnet из задания 12.1 и добавить проверку на ошибки.
@@ -56,8 +56,8 @@ R1(config)#logging
 
 R1(config)#sh i
 % Ambiguous command:  "sh i"
-'''
+"""
 
 # списки команд с ошибками и без:
-config_commands_errors = ['logging 0255.255.1', 'logging', 'sh i']
-correct_config_commands = ['logging buffered 20010', 'ip http server']
+config_commands_errors = ["logging 0255.255.1", "logging", "sh i"]
+correct_config_commands = ["logging buffered 20010", "ip http server"]

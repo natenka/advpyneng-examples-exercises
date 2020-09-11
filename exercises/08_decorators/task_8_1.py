@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Задание 8.1
 
 Создать декоратор timecode, который засекает время выполнения декорируемой функции
@@ -24,16 +24,16 @@ In [4]: print(send_show_command(device_params, 'sh clock'))
 
 Тест берет значения из словаря device_params в этом файле, поэтому если
 для заданий используются другие адреса/логины, надо заменить их в словаре.
-'''
+"""
 
 from netmiko import ConnectHandler
 
 device_params = {
-    'device_type': 'cisco_ios',
-    'ip': '192.168.100.1',
-    'username': 'cisco',
-    'password': 'cisco',
-    'secret': 'cisco'
+    "device_type": "cisco_ios",
+    "ip": "192.168.100.1",
+    "username": "cisco",
+    "password": "cisco",
+    "secret": "cisco",
 }
 
 
@@ -45,5 +45,4 @@ def send_show_command(params, command):
 
 
 if __name__ == "__main__":
-    print(send_show_command(device_params, 'sh clock'))
-
+    print(send_show_command(device_params, "sh clock"))
