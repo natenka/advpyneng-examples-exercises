@@ -22,17 +22,16 @@ async def send_command_to_devices(devices, command):
     tasks = []
     for device in devices:
         tasks.append(asyncio.create_task(connect_ssh(device, command)))
-    done, pending = await asyncio.wait(
-        tasks, timeout=10)
-    #result = [t.result() for t in success]
+    done, pending = await asyncio.wait(tasks, timeout=10)
+    # result = [t.result() for t in success]
     print(done, pending)
-    #result = await asyncio.gather(pending)
+    # result = await asyncio.gather(pending)
     return done, pending
 
 
 if __name__ == "__main__":
-    with open('devices_netmiko.yaml') as f:
+    with open("devices_netmiko.yaml") as f:
         devices = yaml.safe_load(f)
-    result = asyncio.run(send_command_to_devices(devices, 'sh run | i hostname'))
-    print('#'*100)
+    result = asyncio.run(send_command_to_devices(devices, "sh run | i hostname"))
+    print("#" * 100)
     print(result)

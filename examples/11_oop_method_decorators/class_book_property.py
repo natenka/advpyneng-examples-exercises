@@ -1,4 +1,3 @@
-
 ## Стандартный вариант применения property без setter
 class Book:
     def __init__(self, title, price, quantity):
@@ -9,7 +8,7 @@ class Book:
     # метод, который декорирован property становится getter'ом
     @property
     def total(self):
-        print('getter')
+        print("getter")
         return self.price * self.quantity
 
 
@@ -26,19 +25,19 @@ class Book:
         return round(self.price * self.quantity, 2)
 
     # а price доступен для чтения и записи
-    @property # этот метод превращается в getter
+    @property  # этот метод превращается в getter
     def price(self):
-        print('price getter')
+        print("price getter")
         return self._price
 
     # при записи делается проверка значения
     @price.setter
     def price(self, value):
-        print('price setter')
+        print("price setter")
         if not isinstance(value, (int, float)):
-            raise TypeError('Значение должно быть числом')
+            raise TypeError("Значение должно быть числом")
         if not value >= 0:
-            raise ValueError('Значение должно быть положительным')
+            raise ValueError("Значение должно быть положительным")
         self._price = float(value)
 
 
@@ -62,16 +61,16 @@ class Book:
     # позже указываем getter
     @price.getter
     def price(self):
-        print('price getter')
+        print("price getter")
         return self._price
 
     @price.setter
     def price(self, value):
-        print('price setter')
+        print("price setter")
         if not isinstance(value, (int, float)):
-            raise TypeError('Значение должно быть числом')
+            raise TypeError("Значение должно быть числом")
         if not value >= 0:
-            raise ValueError('Значение должно быть положительным')
+            raise ValueError("Значение должно быть положительным")
         self._price = float(value)
 
 
@@ -86,15 +85,15 @@ class Book:
         return round(self.price * self.quantity, 2)
 
     def _get_price(self):
-        print('price getter')
+        print("price getter")
         return self._price
 
     def _set_price(self, value):
-        print('price setter')
+        print("price setter")
         if not isinstance(value, (int, float)):
-            raise TypeError('Значение должно быть числом')
+            raise TypeError("Значение должно быть числом")
         if not value >= 0:
-            raise ValueError('Значение должно быть положительным')
+            raise ValueError("Значение должно быть положительным")
         self._price = float(value)
 
     total = property(_get_total)
@@ -112,15 +111,15 @@ class Book:
         return round(self.price * self.quantity, 2)
 
     def _get_price(self):
-        print('price getter')
+        print("price getter")
         return self._price
 
     def _set_price(self, value):
-        print('price setter')
+        print("price setter")
         if not isinstance(value, (int, float)):
-            raise TypeError('Значение должно быть числом')
+            raise TypeError("Значение должно быть числом")
         if not value >= 0:
-            raise ValueError('Значение должно быть положительным')
+            raise ValueError("Значение должно быть положительным")
         self._price = float(value)
 
     total = property()
@@ -129,4 +128,3 @@ class Book:
     price = property()
     price = price.getter(_get_price)
     price = price.setter(_set_price)
-

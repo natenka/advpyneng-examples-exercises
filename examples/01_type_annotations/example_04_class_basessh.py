@@ -4,11 +4,7 @@ from typing import Union, List, Iterable
 
 
 class BaseSSH:
-    def __init__(self,
-                 ip: str,
-                 username: str,
-                 password: str
-                 ) -> None:
+    def __init__(self, ip: str, username: str, password: str) -> None:
         self.ip = ip
         self.username = username
         self.password = password
@@ -38,8 +34,7 @@ class BaseSSH:
         result = self._ssh.recv(self._MAX_READ).decode("ascii")
         return result
 
-    def send_config_commands(self,
-                             commands: Union[str, Iterable[str]]) -> str:
+    def send_config_commands(self, commands: Union[str, Iterable[str]]) -> str:
         if isinstance(commands, str):
             commands = [commands]
         for command in commands:

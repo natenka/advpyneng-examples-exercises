@@ -6,8 +6,7 @@ class Time:
 
     @classmethod
     def from_string(cls, date_str):
-        year, month, day = [int(i) for i in date_str.split(':')]
+        year, month, day = [int(i) for i in date_str.split(":")]
         return cls(year, month, day)
-    #from_string = classmethod(from_string)
 
-
+    # from_string = classmethod(from_string)

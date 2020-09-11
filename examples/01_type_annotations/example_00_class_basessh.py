@@ -37,5 +37,3 @@ class BaseSSH:
             time.sleep(0.5)
         result = self._ssh.recv(self._MAX_READ).decode("ascii")
         return result
-
-

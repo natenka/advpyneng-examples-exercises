@@ -12,5 +12,3 @@ class Network(SourceCodeMixin):
 
     def __getitem__(self, index):
         return self._hosts[index]
-
-

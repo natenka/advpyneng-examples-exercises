@@ -12,12 +12,10 @@ class IPv4Network:
         return tuple([str(ip) for ip in self._net.hosts()])
 
     def allocate(self, ip):
-        #if not ip in self.hosts():
+        # if not ip in self.hosts():
         #    raise ValueError(f'Адрес должен быть из сети '
         #                     f'{self.address}/{self.mask}')
         self.allocated += (ip,)
 
     def unassigned(self):
-        return tuple([ip for ip in self.hosts()
-                      if ip not in self.allocated])
-
+        return tuple([ip for ip in self.hosts() if ip not in self.allocated])

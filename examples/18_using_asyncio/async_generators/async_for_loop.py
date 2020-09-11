@@ -6,4 +6,3 @@ async def async_for(items):
             print(item)
         except StopAsyncIteration:
             break
-

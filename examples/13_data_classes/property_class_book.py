@@ -8,14 +8,15 @@ class Book:
         self.quantity = quantity
 
     def _get_price(self):
-        print('Book: price getter')
+        print("Book: price getter")
         return self._price
 
     def _set_price(self, value):
-        print('Book: price setter')
+        print("Book: price setter")
         if value < 0:
-            raise ValueError('Error')
+            raise ValueError("Error")
         self._price = value
+
     price = MyProperty(fset=_set_price)
 
     def __repr__(self):

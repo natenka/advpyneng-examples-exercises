@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 def connect_ssh(device, command):
-    #print(f'Подключаюсь к {device["host"]}')
+    # print(f'Подключаюсь к {device["host"]}')
     with ConnectHandler(**device) as ssh:
         ssh.enable()
         result = ssh.send_command(command)
@@ -20,11 +20,10 @@ def send_command_to_devices(devices, command):
     return result
 
 
-
 if __name__ == "__main__":
-    with open('devices_netmiko.yaml') as f:
+    with open("devices_netmiko.yaml") as f:
         devices = yaml.safe_load(f)
-    result = send_command_to_devices(devices, 'sh run')
-    #pprint(list(map(len, result)))
-    #with open('testfile_sh_run_all_netmiko.txt', 'w') as f:
+    result = send_command_to_devices(devices, "sh run")
+    # pprint(list(map(len, result)))
+    # with open('testfile_sh_run_all_netmiko.txt', 'w') as f:
     #    f.write(result[0])

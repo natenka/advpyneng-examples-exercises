@@ -24,4 +24,3 @@ def ping_ip(ip_address, count):
 
 if __name__ == "__main__":
     ping_ip()
-

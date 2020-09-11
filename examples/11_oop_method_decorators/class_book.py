@@ -10,7 +10,7 @@ class Book:
 
 
 if __name__ == "__main__":
-    good = Book('Good omens', 35, 100)
+    good = Book("Good omens", 35, 100)
     print(good.total)
     good.price = 30
     print(good.total)

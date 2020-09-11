@@ -4,19 +4,21 @@ import netdev
 
 
 device_params = {
-    'device_type': 'cisco_ios',
-    'host': '192.168.100.1',
-    'username': 'cisco',
-    'password': 'cisco',
-    'secret': 'cisco'
+    "device_type": "cisco_ios",
+    "host": "192.168.100.1",
+    "username": "cisco",
+    "password": "cisco",
+    "secret": "cisco",
 }
+
 
 def timecode(function):
     async def wrapper(*args, **kwargs):
         start_time = datetime.now()
         result = await function(*args, **kwargs)
-        print('>>> Функция выполнялась:', datetime.now() - start_time)
+        print(">>> Функция выполнялась:", datetime.now() - start_time)
         return result
+
     return wrapper
 
 
@@ -29,5 +31,4 @@ async def connect_ssh(device, command):
 
 
 if __name__ == "__main__":
-    print(asyncio.run(connect_ssh(device_params, 'sh clock')))
-
+    print(asyncio.run(connect_ssh(device_params, "sh clock")))

@@ -8,6 +8,7 @@ def check_ip(ip: str) -> bool:
     except ValueError as err:
         return False
 
+
 if __name__ == "__main__":
-    print(check_ip('10.1.1.1'))
+    print(check_ip("10.1.1.1"))
     print(check_ip(500))

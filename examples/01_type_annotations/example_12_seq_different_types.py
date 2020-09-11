@@ -3,7 +3,7 @@ from netmiko import CiscoIosBase
 
 
 ip_list: List[Union[str, int]] = []
-ip_list.append('10.1.1.1')
+ip_list.append("10.1.1.1")
 ip_list.append(4)
 
 

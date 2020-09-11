@@ -7,7 +7,7 @@ import click
 
 def print_green(message):
     click.echo(click.style(message, fg="green", bold=True))
-    #click.secho(message, fg="green", bold=True)
+    # click.secho(message, fg="green", bold=True)
 
 
 def print_red(message):
@@ -51,7 +51,9 @@ def take_a_long_break(long_break=30):
     print("#" * 40)
 
 
-def run_pomodoro_set(pomodoro_set, work_minutes=25, short_break=5, long_break=30, set_size=4):
+def run_pomodoro_set(
+    pomodoro_set, work_minutes=25, short_break=5, long_break=30, set_size=4
+):
     for idx, pomodoro_num in enumerate(pomodoro_set, 1):
         run_pomodoro(pomodoro_num, work_minutes)
         if pomodoro_num == set_size:
@@ -78,8 +80,7 @@ def update_session_stats(session_stats):
 @click.option("--long_break", "-l", default=30, show_default=True, type=int)
 @click.option("--set_size", "-p", default=4, show_default=True, type=int)
 def pomodoro(pomodoros_to_run, work_minutes, short_break, long_break, set_size):
-    session_stats = {"total": pomodoros_to_run, "done": 0,
-                     "todo": pomodoros_to_run}
+    session_stats = {"total": pomodoros_to_run, "done": 0, "todo": pomodoros_to_run}
     global stats
     stats = update_session_stats(session_stats)
 

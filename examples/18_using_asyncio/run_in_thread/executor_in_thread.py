@@ -30,7 +30,9 @@ async def send_command_to_devices(devices, command):
         if device["host"] in sync_only_devices:
             loop = asyncio.get_running_loop()
             executor = ThreadPoolExecutor(max_workers=4)
-            tasks.append(loop.run_in_executor(executor, connect_ssh_sync, device, command))
+            tasks.append(
+                loop.run_in_executor(executor, connect_ssh_sync, device, command)
+            )
         else:
             tasks.append(asyncio.create_task(connect_ssh(device, command)))
     result = await asyncio.gather(*tasks)
@@ -38,8 +40,8 @@ async def send_command_to_devices(devices, command):
 
 
 if __name__ == "__main__":
-    sync_only_devices = ['192.168.100.2']
-    with open('devices_netmiko.yaml') as f:
+    sync_only_devices = ["192.168.100.2"]
+    with open("devices_netmiko.yaml") as f:
         devices = yaml.safe_load(f)
-    result = asyncio.run(send_command_to_devices(devices, 'sh run | i hostname'))
+    result = asyncio.run(send_command_to_devices(devices, "sh run | i hostname"))
     pprint(result)

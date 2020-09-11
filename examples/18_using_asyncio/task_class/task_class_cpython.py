@@ -1,5 +1,5 @@
 class Task(futures._PyFuture):  # Inherit Python Task implementation
-                                # from a Python Future implementation.
+    # from a Python Future implementation.
 
     """A coroutine wrapped in a Future."""
 
@@ -22,10 +22,11 @@ class Task(futures._PyFuture):  # Inherit Python Task implementation
         By default the current task for the current event loop is returned.
         None is returned when called not in the context of a Task.
         """
-        warnings.warn("Task.current_task() is deprecated, "
-                      "use asyncio.current_task() instead",
-                      PendingDeprecationWarning,
-                      stacklevel=2)
+        warnings.warn(
+            "Task.current_task() is deprecated, " "use asyncio.current_task() instead",
+            PendingDeprecationWarning,
+            stacklevel=2,
+        )
         if loop is None:
             loop = events.get_event_loop()
         return current_task(loop)
@@ -35,10 +36,11 @@ class Task(futures._PyFuture):  # Inherit Python Task implementation
         """Return a set of all tasks for an event loop.
         By default all tasks for the current event loop are returned.
         """
-        warnings.warn("Task.all_tasks() is deprecated, "
-                      "use asyncio.all_tasks() instead",
-                      PendingDeprecationWarning,
-                      stacklevel=2)
+        warnings.warn(
+            "Task.all_tasks() is deprecated, " "use asyncio.all_tasks() instead",
+            PendingDeprecationWarning,
+            stacklevel=2,
+        )
         return _all_tasks_compat(loop)
 
     def __init__(self, coro, *, loop=None):
@@ -62,11 +64,11 @@ class Task(futures._PyFuture):  # Inherit Python Task implementation
     def __del__(self):
         if self._state == futures._PENDING and self._log_destroy_pending:
             context = {
-                'task': self,
-                'message': 'Task was destroyed but it is pending!',
+                "task": self,
+                "message": "Task was destroyed but it is pending!",
             }
             if self._source_traceback:
-                context['source_traceback'] = self._source_traceback
+                context["source_traceback"] = self._source_traceback
             self._loop.call_exception_handler(context)
         super().__del__()
 
@@ -74,10 +76,10 @@ class Task(futures._PyFuture):  # Inherit Python Task implementation
         return base_tasks._task_repr_info(self)
 
     def set_result(self, result):
-        raise RuntimeError('Task does not support set_result operation')
+        raise RuntimeError("Task does not support set_result operation")
 
     def set_exception(self, exception):
-        raise RuntimeError('Task does not support set_exception operation')
+        raise RuntimeError("Task does not support set_exception operation")
 
     def get_stack(self, *, limit=None):
         """Return the list of stack frames for this task's coroutine.
@@ -140,8 +142,7 @@ class Task(futures._PyFuture):  # Inherit Python Task implementation
 
     def __step(self, exc=None):
         if self.done():
-            raise futures.InvalidStateError(
-                f'_step(): already done: {self!r}, {exc!r}')
+            raise futures.InvalidStateError(f"_step(): already done: {self!r}, {exc!r}")
         if self._must_cancel:
             if not isinstance(exc, futures.CancelledError):
                 exc = futures.CancelledError()
@@ -173,35 +174,34 @@ class Task(futures._PyFuture):  # Inherit Python Task implementation
             super().set_exception(exc)
             raise
         else:
-            blocking = getattr(result, '_asyncio_future_blocking', None)
+            blocking = getattr(result, "_asyncio_future_blocking", None)
             if blocking is not None:
                 # Yielded Future must come from Future.__iter__().
                 if futures._get_loop(result) is not self._loop:
                     new_exc = RuntimeError(
-                        f'Task {self!r} got Future '
-                        f'{result!r} attached to a different loop')
-                    self._loop.call_soon(
-                        self.__step, new_exc, context=self._context)
+                        f"Task {self!r} got Future "
+                        f"{result!r} attached to a different loop"
+                    )
+                    self._loop.call_soon(self.__step, new_exc, context=self._context)
                 elif blocking:
                     if result is self:
-                        new_exc = RuntimeError(
-                            f'Task cannot await on itself: {self!r}')
+                        new_exc = RuntimeError(f"Task cannot await on itself: {self!r}")
                         self._loop.call_soon(
-                            self.__step, new_exc, context=self._context)
+                            self.__step, new_exc, context=self._context
+                        )
                     else:
                         result._asyncio_future_blocking = False
-                        result.add_done_callback(
-                            self.__wakeup, context=self._context)
+                        result.add_done_callback(self.__wakeup, context=self._context)
                         self._fut_waiter = result
                         if self._must_cancel:
                             if self._fut_waiter.cancel():
                                 self._must_cancel = False
                 else:
                     new_exc = RuntimeError(
-                        f'yield was used instead of yield from '
-                        f'in task {self!r} with {result!r}')
-                    self._loop.call_soon(
-                        self.__step, new_exc, context=self._context)
+                        f"yield was used instead of yield from "
+                        f"in task {self!r} with {result!r}"
+                    )
+                    self._loop.call_soon(self.__step, new_exc, context=self._context)
 
             elif result is None:
                 # Bare yield relinquishes control for one event loop iteration.
@@ -209,15 +209,14 @@ class Task(futures._PyFuture):  # Inherit Python Task implementation
             elif inspect.isgenerator(result):
                 # Yielding a generator is just wrong.
                 new_exc = RuntimeError(
-                    f'yield was used instead of yield from for '
-                    f'generator in task {self!r} with {result!r}')
-                self._loop.call_soon(
-                    self.__step, new_exc, context=self._context)
+                    f"yield was used instead of yield from for "
+                    f"generator in task {self!r} with {result!r}"
+                )
+                self._loop.call_soon(self.__step, new_exc, context=self._context)
             else:
                 # Yielding something else is an error.
-                new_exc = RuntimeError(f'Task got bad yield: {result!r}')
-                self._loop.call_soon(
-                    self.__step, new_exc, context=self._context)
+                new_exc = RuntimeError(f"Task got bad yield: {result!r}")
+                self._loop.call_soon(self.__step, new_exc, context=self._context)
         finally:
             _leave_task(self._loop, self)
             self = None  # Needed to break cycles when an exception occurs.
@@ -237,4 +236,3 @@ class Task(futures._PyFuture):  # Inherit Python Task implementation
             # that return non-generator iterators from their `__iter__`.
             self.__step()
         self = None  # Needed to break cycles when an exception occurs.
-

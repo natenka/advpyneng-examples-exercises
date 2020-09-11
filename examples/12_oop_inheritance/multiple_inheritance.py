@@ -1,14 +1,15 @@
 class A:
     def __init__(self):
-        print('A')
+        print("A")
+
 
 class B(A):
     def test(self):
-        print('B test')
+        print("B test")
+
 
 class C(B, A):
     def __init__(self):
-        print('C')
+        print("C")
         super().__init__()
-        #B.__init__(self)
-
+        # B.__init__(self)

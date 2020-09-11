@@ -17,10 +17,11 @@ def send_command_to_devices(devices, command, limit):
     results = []
     with ThreadPoolExecutor(max_workers=limit) as executor:
         futures = [
-            executor.submit(send_show_command, device, command)
-            for device in devices
+            executor.submit(send_show_command, device, command) for device in devices
         ]
-        with click.progressbar(length=len(futures), label="Connecting to devices") as bar:
+        with click.progressbar(
+            length=len(futures), label="Connecting to devices"
+        ) as bar:
             for future in as_completed(futures):
                 results.append(future.result())
                 bar.update(1)
@@ -29,7 +30,7 @@ def send_command_to_devices(devices, command, limit):
 
 @click.command()
 @click.argument("command")
-@click.option("--yaml-params", "-y", "yaml_file", type=click.File('r'), required=True)
+@click.option("--yaml-params", "-y", "yaml_file", type=click.File("r"), required=True)
 @click.option("--threads", "-t", type=click.IntRange(1, 10), required=True)
 def main(command, yaml_file, threads):
     devices = yaml.safe_load(yaml_file)

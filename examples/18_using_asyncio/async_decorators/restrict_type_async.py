@@ -7,9 +7,11 @@ def restrict_args_type(required_type):
         @wraps(func)
         async def wrapper(*args):
             if not all(isinstance(arg, required_type) for arg in args):
-                raise ValueError(f'Все аргументы должны быть {required_type.__name__}')
+                raise ValueError(f"Все аргументы должны быть {required_type.__name__}")
             return await func(*args)
+
         return wrapper
+
     return decorator
 
 
@@ -19,7 +21,7 @@ async def to_upper(*args):
     result = [s.upper() for s in args]
     return result
 
-if __name__ == "__main__":
-    asyncio.run(to_upper('a', 'b'))
-    asyncio.run(to_upper('a', 1))
 
+if __name__ == "__main__":
+    asyncio.run(to_upper("a", "b"))
+    asyncio.run(to_upper("a", 1))

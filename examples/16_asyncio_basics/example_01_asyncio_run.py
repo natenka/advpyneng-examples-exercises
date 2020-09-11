@@ -3,9 +3,9 @@ from datetime import datetime
 
 
 async def delay_message(delay, message):
-    print('>>> start delay_message')
+    print(">>> start delay_message")
     await asyncio.sleep(delay)
-    print('<<<', message)
+    print("<<<", message)
 
 
 if __name__ == "__main__":
@@ -14,4 +14,3 @@ if __name__ == "__main__":
 # $ python asyncio_run_example.py
 # >>> start delay_message
 # <<< Работаю...
-

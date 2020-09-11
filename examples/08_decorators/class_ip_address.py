@@ -19,12 +19,11 @@ class IPAddress:
 
 
 if __name__ == "__main__":
-    ip1 = IPAddress('10.10.1.1')
-    ip2 = IPAddress('10.2.1.1')
+    ip1 = IPAddress("10.10.1.1")
+    ip2 = IPAddress("10.2.1.1")
     print(ip1 < ip2)
     print(ip1 > ip2)
     print(ip1 >= ip2)
     print(ip1 <= ip2)
     print(ip1 == ip2)
     print(ip1 != ip2)
-

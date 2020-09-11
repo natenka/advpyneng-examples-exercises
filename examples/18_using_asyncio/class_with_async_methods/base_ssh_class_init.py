@@ -13,12 +13,13 @@ class BaseSSH:
 
     async def connect(self):
         with async_timeout.timeout(self.timeout):
-            self._ssh = await asyncssh.connect(self.host,
-                                               username=self.username,
-                                               password=self.password)
+            self._ssh = await asyncssh.connect(
+                self.host, username=self.username, password=self.password
+            )
             self._writer, self._reader, self._stderr = await self._ssh.open_session(
-                term_type="Dumb", term_size=(200, 24))
-            await self._reader.readuntil('>')
+                term_type="Dumb", term_size=(200, 24)
+            )
+            await self._reader.readuntil(">")
         return self
 
     async def __aenter__(self):
@@ -32,8 +33,8 @@ class BaseSSH:
         await self._ssh.wait_closed()
 
     async def send_command(self, command):
-        self._writer.write(command+'\n')
-        output = await self._reader.readuntil(['>','#'])
+        self._writer.write(command + "\n")
+        output = await self._reader.readuntil([">", "#"])
         return output
 
 
@@ -43,16 +44,18 @@ async def create_connection(**connection_params):
     return ssh
 
 
-#async def main_without_create_connection():
+# async def main_without_create_connection():
 #    r1 = BaseSSH('192.168.100.1', 'cisco', 'cisco')
 #    await r1.connect()
 #    output = await r1.send_command('sh ip int br')
 #    print(output)
 
+
 async def main():
     r1 = await create_connection(
-        host='192.168.100.1', username='cisco', password='cisco')
-    output = await r1.send_command('sh ip int br')
+        host="192.168.100.1", username="cisco", password="cisco"
+    )
+    output = await r1.send_command("sh ip int br")
     print(output)
 
 

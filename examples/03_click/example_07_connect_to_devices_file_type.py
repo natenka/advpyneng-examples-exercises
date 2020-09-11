@@ -21,8 +21,8 @@ def send_command_to_cisco_devices(device_list, command):
 
 @click.command()
 @click.argument("command")
-@click.option("--yaml-params", "-y", type=click.File('r'), required=True)
-@click.option("--write-output-to-file", "-o", type=click.File('w'))
+@click.option("--yaml-params", "-y", type=click.File("r"), required=True)
+@click.option("--write-output-to-file", "-o", type=click.File("w"))
 def main(command, yaml_params, write_output_to_file):
     devices = yaml.safe_load(yaml_params)
 

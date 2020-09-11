@@ -15,19 +15,20 @@ class BaseSSH:
             commands = [commands]
         for command in commands:
             time.sleep(0.5)
-        return 'result'
+        return "result"
 
 
 class CiscoSSH(BaseSSH):
-    def __init__(self,
-                 ip: str,
-                 username: str,
-                 password: str,
-                 secret: str,
-                 disable_paging: bool = True,
-                ) -> None:
+    def __init__(
+        self,
+        ip: str,
+        username: str,
+        password: str,
+        secret: str,
+        disable_paging: bool = True,
+    ) -> None:
         super().__init__(ip, username, password)
 
     def send_config_commands(self, commands: Union[str, List[str]]) -> str:
-        #send....(conf t)
-        return 'result'
+        # send....(conf t)
+        return "result"

@@ -24,7 +24,12 @@ def main():
 
     parser.add_argument("host", action="store", help="IP or name to ping")
     parser.add_argument(
-        "-c", action="store", dest="count", default=2, type=int, help="Number of packets"
+        "-c",
+        action="store",
+        dest="count",
+        default=2,
+        type=int,
+        help="Number of packets",
     )
     args = parser.parse_args()
     print(args)

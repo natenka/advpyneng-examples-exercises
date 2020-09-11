@@ -4,7 +4,7 @@ class MyProperty:
         self.fset = fset
 
     def __get__(self, book_inst, Book_class=None):
-        print('MyProperty: ', self, book_inst, Book_class)
+        print("MyProperty: ", self, book_inst, Book_class)
         if book_inst is None:
             return self
         if self.fget is None:
@@ -15,4 +15,3 @@ class MyProperty:
         if self.fset is None:
             raise AttributeError("can't set attribute")
         self.fset(obj, value)
-

@@ -1,15 +1,16 @@
 import re
 from pprint import pprint
 
+
 def get_one_neighbor(filename):
     with open(filename) as f:
-        line = ''
+        line = ""
         while True:
-            while not 'Device ID' in line:
+            while not "Device ID" in line:
                 line = f.readline()
             neighbor = line
             for line in f:
-                if '----------' in line:
+                if "----------" in line:
                     break
                 neighbor += line
             yield neighbor
@@ -20,10 +21,11 @@ def get_one_neighbor(filename):
 
 def parse_neighbor(output):
     regex = (
-        r'Device ID: (\S+).+?'
-        r' IP address: (?P<ip>\S+).+?'
-        r'Platform: (?P<platform>\S+ \S+), .+?'
-        r', Version (?P<ios>\S+),')
+        r"Device ID: (\S+).+?"
+        r" IP address: (?P<ip>\S+).+?"
+        r"Platform: (?P<platform>\S+ \S+), .+?"
+        r", Version (?P<ios>\S+),"
+    )
 
     result = {}
     match = re.search(regex, output, re.DOTALL)
@@ -32,7 +34,8 @@ def parse_neighbor(output):
         result[device] = match.groupdict()
     return result
 
+
 if __name__ == "__main__":
-    data = get_one_neighbor('sh_cdp_neighbors_detail.txt')
+    data = get_one_neighbor("sh_cdp_neighbors_detail.txt")
     for n in data:
         pprint(parse_neighbor(n), width=120)

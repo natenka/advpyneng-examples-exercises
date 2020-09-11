@@ -1,15 +1,16 @@
 from pprint import pprint
-from netmiko import (ConnectHandler, NetMikoAuthenticationException,
-                     NetMikoTimeoutException)
+from netmiko import (
+    ConnectHandler,
+    NetMikoAuthenticationException,
+    NetMikoTimeoutException,
+)
 from typing import Union, Dict, Optional
 
 
-def send_show_command(device_dict: Dict[str, str],
-                      command: str
-                     ) -> Union[str, None]:
-#def send_show_command(device_dict: Dict[str, str],
-#                      command: str
-#                     ) -> Optional[str]:
+def send_show_command(device_dict: Dict[str, str], command: str) -> Union[str, None]:
+    # def send_show_command(device_dict: Dict[str, str],
+    #                      command: str
+    #                     ) -> Optional[str]:
     try:
         with ConnectHandler(**device_dict) as ssh:
             ssh.enable()
@@ -29,6 +30,6 @@ if __name__ == "__main__":
         "secret": "cisco",
     }
     result = send_show_command(device_params, "sh ip int br")
-    result + 'test'
+    result + "test"
     # result = send_show_command(device_params, 'sh ip route ospf')
     pprint(result, width=100)
