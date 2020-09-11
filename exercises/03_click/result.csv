@@ -1,0 +1,6 @@
+"local device","local port","remote device","remote port"
+"SW1","Eth 0/1","R1","Eth 0/0"
+"SW1","Eth 0/2","R2","Eth 0/0"
+"SW1","Eth 0/3","R3","Eth 0/0"
+"SW1","Eth 0/4","R4","Eth 0/0"
+"R1","Eth 0/0","SW1","Eth 0/1"
