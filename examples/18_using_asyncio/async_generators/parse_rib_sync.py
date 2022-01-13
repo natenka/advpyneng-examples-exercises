@@ -9,30 +9,58 @@
 
 import csv
 from collections import namedtuple
+import asyncio
+import aiofiles
 
 
-def open_csv(filename):
-    with open(filename) as f:
-        for idx, line in enumerate(csv.DictReader(f), 1):
+async def open_csv(filename):
+    async with aiofiles.open(filename) as f:
+        headers = await f.readline()
+        headers = list(csv.reader([headers]))[0]
+        print(f"{headers=}")
+
+        index = 1
+        async for line in f:
+            await asyncio.sleep(0.1)
+            dict_line = list(csv.DictReader([line], fieldnames=headers))[0]
             # print('open_csv', idx)
-            yield idx, line
+            yield index, dict_line
+            index += 1
 
 
-def filter_prefix_next_hop(iterable, nexthop):
-    for idx, line in iterable:
+async def filter_prefix_next_hop(iterable, nexthop):
+    async for idx, line in iterable:
         if line["nexthop"] == nexthop:
             yield idx, line
 
 
-def filter_prefix_mask(iterable, mask):
-    for idx, line in iterable:
+async def filter_prefix_mask(iterable, mask):
+    async for idx, line in iterable:
         if int(line["netmask"]) == mask:
             yield idx, line
 
 
-if __name__ == "__main__":
+async def dummy():
+    for _ in range(200):
+        print("start")
+        await asyncio.sleep(0.5)
+        print("stop")
+
+
+async def filter_data():
     data = open_csv("rib.table.lg.ba.ptt.br-BGP.csv")
     nexthop_45 = filter_prefix_next_hop(data, "200.219.145.45")
     nexthop_45_mask_22 = filter_prefix_mask(nexthop_45, 22)
-    for _ in range(3):
-        print(next(nexthop_45_mask_22))
+    async for item in nexthop_45_mask_22:
+        print(item)
+
+async def main():
+    task1 = asyncio.create_task(filter_data())
+    task2 = asyncio.create_task(dummy())
+    await task1
+    await task2
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+

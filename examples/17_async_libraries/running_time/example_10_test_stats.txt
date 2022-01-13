@@ -1,0 +1,38 @@
+#export PYTHONWARNINGS="ignore"
+
+########## 4 устройства
+
+$ time python example_10_netdev_test.py
+real    0m1.660s
+user    0m1.004s
+sys     0m0.052s
+
+$ time python example_10_asyncssh_test.py
+real    0m3.421s
+user    0m0.848s
+sys     0m0.060s
+
+$ time python example_10_paramiko_test.py
+real    0m2.912s
+user    0m0.788s
+sys     0m0.052s
+
+$ time python example_10_netmiko_test.py
+real    0m6.437s
+user    0m0.896s
+sys     0m0.060s
+
+######### 4 * 5 устройств
+$ time python example_10_netdev_test.py
+real    0m5.983s
+
+$ time python example_10_asyncssh_test.py
+real    0m7.018s
+
+$ time python example_10_paramiko_test.py
+
+real    0m7.076s
+
+$ time python example_10_netmiko_test.py
+real    0m9.353s
+

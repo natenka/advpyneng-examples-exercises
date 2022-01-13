@@ -9,6 +9,7 @@ log.addHandler(logging.NullHandler())
 
 class BaseSSH:
     def __init__(self, ip, username, password):
+        log.warning("START")
         self.ip = ip
         self.username = username
         self.password = password
@@ -57,3 +58,30 @@ class BaseSSH:
 
     def close(self):
         self._ssh.close()
+
+
+
+def send_show(device_dict, command):
+    ip = device_dict["host"]
+    log.info(f"===>  Connection: {ip}")
+
+    try:
+        with ConnectHandler(**device_dict) as ssh:
+            ssh.enable()
+            result = ssh.send_command(command)
+            log.debug(f"<===  Received:   {ip}")
+            log.debug(f"Получен вывод команды {command}\n\n{result}")
+        return result
+    except SSHException as error:
+        #log.exception(f"Ошибка {error} на {ip}")
+        log.error(f"Ошибка {error} на {ip}")
+
+
+def send_command_to_devices(devices, command):
+    log.debug("START")
+    data = {}
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        result = executor.map(send_show, devices, repeat(command))
+        for device, output in zip(devices, result):
+            data[device["host"]] = output
+    return data

@@ -1,3 +1,11 @@
-ИЗМЕНИЛИ 1
-ИЗМЕНИЛИ 2
-ИЗМЕНИЛИ 3
+interface loopback0
+ ip address 10.1.1.1 255.255.255.255
+interface tunnel0
+interface ethernet0/0
+ ip address 10.0.13.1 255.255.255.0
+interface ethernet0/1
+interface ethernet0/2
+ ip address 10.0.19.1 255.255.255.0
+interface ethernet0/3
+interface ethernet0/3.100
+interface ethernet1/0

@@ -25,11 +25,11 @@ async def connect_ssh(device, command):
 
 
 async def send_command_to_devices(devices, command):
+    executor = ThreadPoolExecutor(max_workers=4)
     tasks = []
     for device in devices:
         if device["host"] in sync_only_devices:
             loop = asyncio.get_running_loop()
-            executor = ThreadPoolExecutor(max_workers=4)
             tasks.append(
                 loop.run_in_executor(executor, connect_ssh_sync, device, command)
             )

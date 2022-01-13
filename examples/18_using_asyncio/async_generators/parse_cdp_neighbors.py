@@ -1,23 +1,24 @@
 import re
 from pprint import pprint
+import asyncio
+import aiofiles
 
 
-def get_one_neighbor(filename):
-    with open(filename) as f:
+async def get_one_neighbor(filename):
+    async with aiofiles.open(filename) as f:
         line = ""
         while True:
             while not "Device ID" in line:
-                line = f.readline()
+                line = await f.readline()
             neighbor = line
-            for line in f:
+            async for line in f:
                 if "----------" in line:
                     break
                 neighbor += line
             yield neighbor
-            line = f.readline()
+            line = await f.readline()
             if not line:
                 return
-
 
 def parse_neighbor(output):
     regex = (
@@ -35,7 +36,11 @@ def parse_neighbor(output):
     return result
 
 
-if __name__ == "__main__":
+async def main():
     data = get_one_neighbor("sh_cdp_neighbors_detail_sw1.txt")
-    for n in data:
-        pprint(parse_neighbor(n), width=120)
+    async for n in data:
+        print(parse_neighbor(n))
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

@@ -27,7 +27,7 @@ class BaseSSH:
     def send_show_command(self, command):
         self._ssh.send(command + "\n")
         time.sleep(2)
-        result = self._ssh.recv(self._MAX_READ).decode("ascii")
+        result = self._ssh.recv(self._MAX_READ).decode("utf-8")
         return result
 
     def send_config_commands(self, commands):
@@ -36,7 +36,7 @@ class BaseSSH:
         for command in commands:
             self._ssh.send(command + "\n")
             time.sleep(0.5)
-        result = self._ssh.recv(self._MAX_READ).decode("ascii")
+        result = self._ssh.recv(self._MAX_READ).decode("utf-8")
         return result
 
     def __enter__(self):
@@ -47,3 +47,4 @@ class BaseSSH:
 
     def close(self):
         self._ssh.close()
+

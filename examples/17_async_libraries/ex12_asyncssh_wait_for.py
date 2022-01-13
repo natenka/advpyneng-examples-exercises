@@ -40,24 +40,19 @@ async def send_command_to_devices(devices, command):
 
 if __name__ == "__main__":
     devices = [
-        {
-            "host": "192.168.100.1",
-            "username": "cisco",
-            "password": "cisco",
-            "enable_password": "cisco",
-        },
-        {
-            "host": "192.168.100.2",
-            "username": "cisco",
-            "password": "cisco",
-            "enable_password": "cisco",
-        },
-        {
-            "host": "192.168.100.3",
-            "username": "cisco",
-            "password": "cisco",
-            "enable_password": "cisco",
-        },
+        {'host': '192.168.100.1',
+         'username': 'cisco',
+         'password': 'cisco',
+         'enable_password': 'cisco'},
+        {'host': '192.168.100.2',
+         'username': 'cisco',
+         'password': 'cisco',
+         'enable_password': 'cisco'},
+        {'host': '192.168.100.3',
+         'username': 'cisco',
+         'password': 'cisco',
+         'enable_password': 'cisco'},
     ]
     result = asyncio.run(send_command_to_devices(devices, "sh ip int br"))
     pprint(result, width=120)
+

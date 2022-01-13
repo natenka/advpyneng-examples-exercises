@@ -1,0 +1,33 @@
+>>> Подключаюсь к 192.168.100.1
+>>> Подключаюсь к 192.168.100.2
+>>> Подключаюсь к 192.168.100.3
+<<< Получен результат от 192.168.100.1
+^CОтмена задач
+tasks=[<Task pending name='Task-137' coro=<AsyncsshTransport.read() running at /home/vagrant/venv/pyneng-py3-8-0/lib/python3.8/site-packages/scrapli/transport/plugins/asyncssh/transport.py:195> wait_for=<Future pending cb=[<TaskWakeupMe
+thWrapper object at 0xb5ecbb68>()]> cb=[_release_waiter(<Future pendi...xb5e56658>()]>)() at /usr/local/lib/python3.8/asyncio/tasks.py:429]>, <Task pending name='Task-139' coro=<AsyncsshTransport.read() running at /home/vagrant/venv/pyn
+eng-py3-8-0/lib/python3.8/site-packages/scrapli/transport/plugins/asyncssh/transport.py:195> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0xb5ecbc88>()]> cb=[_release_waiter(<Future pendi...xb5e56970>()]>)() at /usr/loc
+al/lib/python3.8/asyncio/tasks.py:429]>, <Task pending name='Task-1' coro=<run_all() running at ex04_even_loop_cancel.py:30> wait_for=<_GatheringFuture pending cb=[<TaskWakeupMethWrapper object at 0xb5ecbbe0>()]>>, <Task pending name='T
+ask-3' coro=<send_show() running at ex04_even_loop_cancel.py:15> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0xb5e566e8>()]> cb=[gather.<locals>._done_callback() at /usr/local/lib/python3.8/asyncio/tasks.py:751]>, <Tas
+k pending name='Task-138' coro=<AsyncChannel.send_input() running at /home/vagrant/venv/pyneng-py3-8-0/lib/python3.8/site-packages/scrapli/channel/async_channel.py:494> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0xb5e
+56970>()]> cb=[_release_waiter(<Future pendi...xb5e566e8>()]>)() at /usr/local/lib/python3.8/asyncio/tasks.py:429]>, <Task pending name='Task-4' coro=<send_show() running at ex04_even_loop_cancel.py:15> wait_for=<Future pending cb=[<Tas
+kWakeupMethWrapper object at 0xb5de98f8>()]> cb=[gather.<locals>._done_callback() at /usr/local/lib/python3.8/asyncio/tasks.py:751]>, <Task pending name='Task-93' coro=<AsyncChannel.send_input() running at /home/vagrant/venv/pyneng-py3-
+8-0/lib/python3.8/site-packages/scrapli/channel/async_channel.py:498> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0xb5e56658>()]> cb=[_release_waiter(<Future pendi...xb5de98f8>()]>)() at /usr/local/lib/python3.8/asynci
+o/tasks.py:429]>]
+[<Task pending name='Task-137' coro=<AsyncsshTransport.read() running at /home/vagrant/venv/pyneng-py3-8-0/lib/python3.8/site-packages/scrapli/transport/plugins/asyncssh/transport.py:195> wait_for=<Future pending cb=[<TaskWakeupMethWrap
+per object at 0xb5ecbb68>()]> cb=[_release_waiter(<Future pendi...xb5e56658>()]>)() at /usr/local/lib/python3.8/asyncio/tasks.py:429]>,
+ <Task pending name='Task-139' coro=<AsyncsshTransport.read() running at /home/vagrant/venv/pyneng-py3-8-0/lib/python3.8/site-packages/scrapli/transport/plugins/asyncssh/transport.py:195> wait_for=<Future pending cb=[<TaskWakeupMethWrap
+per object at 0xb5ecbc88>()]> cb=[_release_waiter(<Future pendi...xb5e56970>()]>)() at /usr/local/lib/python3.8/asyncio/tasks.py:429]>,
+ <Task pending name='Task-1' coro=<run_all() running at ex04_even_loop_cancel.py:30> wait_for=<_GatheringFuture pending cb=[<TaskWakeupMethWrapper object at 0xb5ecbbe0>()]>>,
+ <Task pending name='Task-3' coro=<send_show() running at ex04_even_loop_cancel.py:15> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0xb5e566e8>()]> cb=[gather.<locals>._done_callback() at /usr/local/lib/python3.8/asynci
+o/tasks.py:751]>,
+ <Task pending name='Task-138' coro=<AsyncChannel.send_input() running at /home/vagrant/venv/pyneng-py3-8-0/lib/python3.8/site-packages/scrapli/channel/async_channel.py:494> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at
+0xb5e56970>()]> cb=[_release_waiter(<Future pendi...xb5e566e8>()]>)() at /usr/local/lib/python3.8/asyncio/tasks.py:429]>,
+ <Task pending name='Task-4' coro=<send_show() running at ex04_even_loop_cancel.py:15> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0xb5de98f8>()]> cb=[gather.<locals>._done_callback() at /usr/local/lib/python3.8/asynci
+o/tasks.py:751]>,
+ <Task pending name='Task-93' coro=<AsyncChannel.send_input() running at /home/vagrant/venv/pyneng-py3-8-0/lib/python3.8/site-packages/scrapli/channel/async_channel.py:498> wait_for=<Future pending cb=[<TaskWakeupMethWrapper object at 0
+xb5e56658>()]> cb=[_release_waiter(<Future pendi...xb5de98f8>()]>)() at /usr/local/lib/python3.8/asyncio/tasks.py:429]>]
+### Отменено подключение к 192.168.100.2
+### Отменено подключение к 192.168.100.3
+### Отменена send_command_to_devices
+[CancelledError(), CancelledError(), None, None, CancelledError(), None, CancelledError()]
+

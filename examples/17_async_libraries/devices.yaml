@@ -1,9 +1,18 @@
 - host: 192.168.100.1
   username: cisco
   password: cisco
+  secret: cisco
+  connect_timeout: 5
+  encryption_algs: "+aes256-cbc"
 - host: 192.168.100.2
   username: cisco
   password: cisco
+  secret: cisco
+  connect_timeout: 5
+  encryption_algs: "+aes256-cbc"
 - host: 192.168.100.3
   username: cisco
   password: cisco
+  secret: cisco
+  connect_timeout: 5
+  encryption_algs: "+aes128-cbc,aes256-cbc"

@@ -1,6 +1,0 @@
-ThreadPoolExecutor-0_0 root INFO: ===> 19:47:00.535993 Connection: 192.168.100.1
-ThreadPoolExecutor-0_1 root INFO: ===> 19:47:00.537864 Connection: 192.168.100.2
-ThreadPoolExecutor-0_0 root INFO: <=== 19:47:06.020282 Received:   192.168.100.1
-ThreadPoolExecutor-0_0 root INFO: ===> 19:47:06.128180 Connection: 192.168.100.3
-ThreadPoolExecutor-0_1 root INFO: <=== 19:47:06.140883 Received:   192.168.100.2
-ThreadPoolExecutor-0_0 root INFO: <=== 19:47:11.744594 Received:   192.168.100.3

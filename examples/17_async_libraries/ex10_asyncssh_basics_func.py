@@ -36,3 +36,4 @@ if __name__ == "__main__":
     }
     result = asyncio.run(send_show(**r1, command="sh ip int br"))
     print(result)
+
