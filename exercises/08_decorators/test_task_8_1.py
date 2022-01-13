@@ -5,7 +5,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_function_exists, check_function_params
+from advpyneng_helper_functions import check_function_exists, check_function_params
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
@@ -31,9 +31,11 @@ def test_timecode(capsys):
     assert return_value == 5
 
     # должно выводиться сообщение со временем выполнения
-    correct_stdout = "Функция выполнялась"
+    correct_stdout = "функция выполнялась"
     out, err = capsys.readouterr()
     seconds = float(out.strip().split(":")[-1])
-    assert out != "", "Сообщение об ошибке не выведено на stdout"
-    assert correct_stdout in out, "Выведено неправильное сообщение об ошибке"
-    assert 1 < seconds < 4
+    assert out != "", "Сообщение о времени выполнения не выведено на stdout"
+    assert correct_stdout in out.lower(), "Выведено неправильное сообщение"
+    assert (
+        1 < seconds < 4
+    ), "Время выполнения для функции в тесте должно быть примерно 2 секунды"

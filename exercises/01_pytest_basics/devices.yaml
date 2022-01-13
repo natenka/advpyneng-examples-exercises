@@ -1,0 +1,58 @@
+reachable_ssh_telnet:
+  - platform: cisco_iosxe
+    host: 192.168.100.1
+    auth_username: cisco
+    auth_password: cisco
+    auth_secondary: cisco
+    auth_strict_key: false
+    transport: paramiko
+    timeout_socket: 5
+    timeout_transport: 10
+  - platform: cisco_iosxe
+    host: 192.168.100.1
+    auth_username: cisco
+    auth_password: cisco
+    auth_secondary: cisco
+    transport: telnet
+    port: 23
+    timeout_socket: 5
+    timeout_transport: 10
+reachable_ssh_telnet_wrong_auth_password:
+  - platform: cisco_iosxe
+    host: 192.168.100.2
+    auth_username: cisco
+    auth_password: ciscocisco
+    auth_secondary: cisco
+    auth_strict_key: false
+    transport: paramiko
+    timeout_socket: 5
+    timeout_transport: 10
+  - platform: cisco_iosxe
+    host: 192.168.100.2
+    auth_username: cisco
+    auth_password: ciscocisco
+    auth_secondary: cisco
+    transport: telnet
+    port: 23
+    timeout_socket: 5
+    timeout_transport: 10
+reachable_telnet_only:
+  - platform: cisco_iosxe
+    host: 192.168.100.3
+    auth_username: cisco
+    auth_password: cisco
+    auth_secondary: cisco
+    auth_strict_key: false
+    transport: paramiko
+    timeout_socket: 5
+    timeout_transport: 10
+unreachable:
+  - platform: cisco_iosxe
+    host: 192.168.100.55
+    auth_username: cisco
+    auth_password: cisco
+    auth_secondary: cisco
+    auth_strict_key: false
+    transport: paramiko
+    timeout_socket: 5
+    timeout_transport: 10

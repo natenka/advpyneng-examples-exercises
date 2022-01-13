@@ -5,7 +5,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_function_exists, check_function_params
+from advpyneng_helper_functions import check_function_exists, check_function_params
 
 
 # Проверка что тест вызван через pytest ..., а не python ...
@@ -22,7 +22,6 @@ def test_func_created():
 
 def test_total_order_exception():
     with pytest.raises(ValueError) as excinfo:
-
         @task_8_6.total_order
         class DoThing:
             pass
@@ -57,3 +56,12 @@ def test_total_order_methods():
     assert big_num > small_num
     assert big_num >= small_num
     assert big_num != small_num
+
+    num_1 = DoThing(5)
+    num_2 = DoThing(5)
+
+    assert not num_1 < num_2
+    assert num_1 <= num_2
+    assert not num_1 > num_2
+    assert num_1 >= num_2
+    assert num_1 == num_2

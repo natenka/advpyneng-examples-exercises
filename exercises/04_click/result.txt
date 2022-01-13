@@ -1,0 +1,26 @@
+Interface                  IP-Address      OK? Method Status                Protocol
+Ethernet0/0                192.168.100.1   YES NVRAM  up                    up      
+Ethernet0/1                192.168.200.1   YES NVRAM  up                    up      
+Ethernet0/2                unassigned      YES NVRAM  up                    up      
+Ethernet0/3                192.168.130.1   YES NVRAM  up                    up      
+Loopback22                 10.2.2.2        YES NVRAM  up                    up      
+Loopback33                 unassigned      YES unset  up                    up      
+Loopback55                 5.5.5.5         YES manual up                    up      
+Loopback99                 10.0.99.1       YES manual up                    up      
+Loopback100                10.1.1.100      YES manual up                    up      
+Interface                  IP-Address      OK? Method Status                Protocol
+Ethernet0/0                192.168.100.2   YES NVRAM  up                    up      
+Ethernet0/1                10.100.23.2     YES NVRAM  up                    up      
+Ethernet0/2                unassigned      YES NVRAM  administratively down down    
+Ethernet0/3                unassigned      YES NVRAM  administratively down down    
+Loopback0                  10.2.2.2        YES NVRAM  up                    up      
+Loopback9                  unassigned      YES unset  up                    up      
+Loopback19                 unassigned      YES unset  up                    up      
+Loopback99                 10.0.99.1       YES manual up                    up      
+Loopback100                10.100.100.2    YES NVRAM  up                    up      
+Interface                  IP-Address      OK? Method Status                Protocol
+Ethernet0/0                192.168.100.3   YES NVRAM  up                    up      
+Ethernet0/1                10.100.23.3     YES NVRAM  up                    up      
+Ethernet0/2                unassigned      YES NVRAM  administratively down down    
+Ethernet0/3                unassigned      YES NVRAM  administratively down down    
+Loopback99                 10.0.99.1       YES manual up                    up      

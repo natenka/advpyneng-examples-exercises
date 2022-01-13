@@ -4,7 +4,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import (
+from advpyneng_helper_functions import (
     check_function_exists,
     check_function_params,
     check_attr_or_method,
@@ -39,3 +39,9 @@ def test_count_total():
     items.buy(32)
     return_value_items = items.buy(33)
     assert return_value_items == 180
+
+    # проверка что после создания второй функции не изменилась первая
+    return_value_things = things.buy(10)
+    assert return_value_things == 65
+    return_value_items = items.buy(10)
+    assert return_value_items == 190

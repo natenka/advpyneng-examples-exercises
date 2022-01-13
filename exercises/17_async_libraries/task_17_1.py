@@ -19,7 +19,7 @@
 
 In [1]: import asyncio
 
-In [2]: from task_11_1 import send_config_commands
+In [2]: from task_17_1 import send_config_commands
 
 In [3]: commands = ['interface loopback55', 'ip address 10.5.5.5 255.255.255.255']
 

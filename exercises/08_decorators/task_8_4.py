@@ -2,17 +2,20 @@
 """
 Задание 8.4
 
-Создать декоратор retry, который выполняет декорируемую функцию повторно,
+Создать декоратор retry, который вызывает декорируемую функцию повторно,
 заданное количество раз, если результат функции не был истинным.
 При каждом повторном запуске результат проверяется:
 
 * если он был истинным, он возвращается
 * если нет, функция запускается повторно заданное количество раз
 
+Если в любое из повторений результат истинный, надо вернуть результат
+и больше не вызывать функцию повторно.
+
 Пример работы декоратора:
 In [2]: @retry(times=3)
     ..: def send_show_command(device, show_command):
-    ..:     print('Подключаюсь к', device['ip'])
+    ..:     print('Подключаюсь к', device['host'])
     ..:     try:
     ..:         with ConnectHandler(**device) as ssh:
     ..:             ssh.enable()
@@ -36,8 +39,11 @@ In [5]: send_show_command(device_params, 'sh clock')
 Подключаюсь к 192.168.100.1
 Подключаюсь к 192.168.100.1
 
-Тест берет значения из словаря device_params в этом файле, поэтому если
-для заданий используются другие адреса/логины, надо заменить их в словаре.
+Тест проверяет декоратор на другой функции (не на send_show_command).
+Значения в словаре device_params можно менять, если используются
+другие адреса/логины.
+
+Ограничение: Функцию send_show_command менять нельзя, можно только применить декоратор.
 """
 
 from netmiko import (
@@ -48,7 +54,7 @@ from netmiko import (
 
 device_params = {
     "device_type": "cisco_ios",
-    "ip": "192.168.100.1",
+    "host": "192.168.100.1",
     "username": "cisco",
     "password": "cisco",
     "secret": "cisco",
@@ -56,14 +62,14 @@ device_params = {
 
 
 def send_show_command(device, show_command):
-    print("Подключаюсь к", device["ip"])
+    print("Подключаюсь к", device["host"])
     try:
         with ConnectHandler(**device) as ssh:
             ssh.enable()
             result = ssh.send_command(show_command)
         return result
-    except (NetMikoAuthenticationException, NetMikoTimeoutException):
-        return None
+    except (NetMikoAuthenticationException, NetMikoTimeoutException) as error:
+        print(error)
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_class_exists, check_attr_or_method
+from advpyneng_helper_functions import check_class_exists, check_attr_or_method
 
 
 # Проверка что тест вызван через pytest ..., а не python ...
@@ -84,3 +84,12 @@ def test_methods():
     assert big_num > small_num
     assert big_num >= small_num
     assert big_num != small_num
+
+    num_1 = DoThing(10)
+    num_2 = DoThing(10)
+
+    assert not num_1 < num_2
+    assert num_1 <= num_2
+    assert not num_1 > num_2
+    assert num_1 >= num_2
+    assert num_1 == num_2

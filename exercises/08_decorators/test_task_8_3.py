@@ -5,7 +5,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_function_exists, check_function_params
+from advpyneng_helper_functions import check_function_exists, check_function_params
 
 
 # Проверка что тест вызван через pytest ..., а не python ...
@@ -37,11 +37,11 @@ def test_add_verbose_args(capsys):
 
     # должно выводиться сообщение
     return_value = do_thing(2, 3, verbose=True)
-    correct_stdout = "Позиционные аргументы"
+    correct_stdout = "позиционные аргументы"
     out, err = capsys.readouterr()
     assert out != "", "На stdout не выведена информация"
     assert (
-        correct_stdout in out
+        correct_stdout in out.lower()
     ), "На stdout не выведена информация про аргументы функции"
 
 
@@ -52,11 +52,11 @@ def test_add_verbose_kwargs(capsys):
 
     # должно выводиться сообщение
     return_value = do_thing(a=2, b=3, verbose=True)
-    correct_stdout = "Ключевые аргументы"
+    correct_stdout = "ключевые аргументы"
     out, err = capsys.readouterr()
     assert out != "", "На stdout не выведена информация"
     assert (
-        correct_stdout in out
+        correct_stdout in out.lower()
     ), "На stdout не выведена информация про аргументы функции"
 
 
@@ -67,9 +67,8 @@ def test_add_verbose_args_kwargs(capsys):
 
     # должно выводиться сообщение
     return_value = do_thing(2, b=3, verbose=True)
-    stdout = "Ключевые аргументы"
     out, err = capsys.readouterr()
     assert out != "", "На stdout не выведена информация"
     assert (
-        "Позиционные аргументы" in out and "Ключевые аргументы" in out
+        "позиционные аргументы" in out.lower() and "ключевые аргументы" in out.lower()
     ), "На stdout не выведена информация про аргументы функции"

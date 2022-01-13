@@ -39,7 +39,8 @@ https://youtu.be/YdeUxrlbAwk
 Для заданий в этом разделе нет тестов!
 '''
 import asyncio
-import netdev
+from scrapli import AsyncScrapli
+from scrapli.exceptions import ScrapliException
 import itertools
 import time
 
@@ -51,23 +52,29 @@ def spin():
         time.sleep(0.1)
 
 
-async def connect_ssh(device, command):
-    await asyncio.sleep(7)
-    print(f"\nПодключаюсь к {device['host']}")
-    async with netdev.create(**device) as ssh:
-        output = await ssh.send_command(command)
-        await asyncio.sleep(5)
-        print(f'\nПолучили данные от {device["host"]}')
-    return output
+async def send_show(device, command):
+    print(f'Подключаюсь к {device["host"]}')
+    try:
+        async with AsyncScrapli(**device) as conn:
+            result = await conn.send_command(command)
+            return result.result
+    except ScrapliException as error:
+        print(error, device["host"])
 
 
-device_params = {'host': '192.168.100.1',
-                 'username': 'cisco',
-                 'password': 'cisco',
-                 'device_type': 'cisco_ios',
-                 'secret': 'cisco'}
+device_params = {
+    "host": "192.168.100.1",
+    "auth_username": "cisco",
+    "auth_password": "cisco",
+    "auth_secondary": "cisco",
+    "auth_strict_key": False,
+    "timeout_socket": 5,
+    "timeout_transport": 10,
+    "platform": "cisco_iosxe",
+    "transport": "asyncssh",
+}
 
 
 if __name__ == "__main__":
-    asyncio.run(connect_ssh(device_params, 'sh clock'))
-
+    output = asyncio.run(send_show(device_params, "show ip int br"))
+    print(output)

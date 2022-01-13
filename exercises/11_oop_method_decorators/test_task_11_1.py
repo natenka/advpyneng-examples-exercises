@@ -4,7 +4,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_class_exists, check_attr_or_method
+from advpyneng_helper_functions import check_class_exists, check_attr_or_method
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
@@ -24,13 +24,12 @@ def test_attributes_created():
         address, mask, broadcast, allocated
     """
     net = task_11_1.IPv4Network("100.7.1.0/26")
-    check_attr_or_method(net, attr="address")
-    check_attr_or_method(net, attr="mask")
+    check_attr_or_method(net, attr="network")
     check_attr_or_method(net, attr="broadcast")
     check_attr_or_method(net, attr="allocated")
     assert (
-        net.allocated == tuple()
-    ), "По умолчанию allocated должен содержать пустой кортеж"
+        net.allocated == set()
+    ), "По умолчанию allocated должен содержать пустое множество"
 
 
 def test_new_attr_created():
@@ -39,16 +38,9 @@ def test_new_attr_created():
         allocate, unassigned
     """
     net = task_11_1.IPv4Network("100.7.1.0/26")
-    check_attr_or_method(net, method="allocate")
+    check_attr_or_method(net, method="allocate_ip")
     check_attr_or_method(net, attr="unassigned")
     check_attr_or_method(net, attr="hosts")
-
-
-def test_return_types():
-    """Проверяем работу объекта"""
-    net = task_11_1.IPv4Network("100.7.1.0/26")
-    assert type(net.hosts) == tuple, "hosts должен возвращать кортеж"
-    assert type(net.unassigned) == tuple, "unassigned должен возвращать кортеж"
 
 
 def test_class():
@@ -57,9 +49,9 @@ def test_class():
     assert len(net.hosts) == 6, "В данной сети должно быть 6 хостов"
     assert net.broadcast == "100.7.1.7", "Broadcast адрес для этой сети 100.7.1.7"
 
-    net.allocate("100.7.1.2")
-    net.allocate("100.7.1.4")
-    net.allocate("100.7.1.5")
+    net.allocate_ip("100.7.1.2")
+    net.allocate_ip("100.7.1.4")
+    net.allocate_ip("100.7.1.5")
 
     assert len(net.hosts) == 6, "Переменная hosts должна возвращать все хосты"
     assert len(net.allocated) == 3, "Переменная allocated должна содержать 3 хоста"
@@ -73,11 +65,3 @@ def test_class():
         pass
     else:
         pytest.fail("Запись переменной hosts должна быть запрещена")
-
-    # test net.unassigned rewrite
-    try:
-        net.unassigned = "a"
-    except AttributeError:
-        pass
-    else:
-        pytest.fail("Запись переменной unassigned должна быть запрещена")

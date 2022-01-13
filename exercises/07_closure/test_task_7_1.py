@@ -4,7 +4,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_function_exists, check_function_params
+from advpyneng_helper_functions import check_function_exists, check_function_params
 
 # Проверка что тест вызван через pytest ..., а не python ...
 from _pytest.assertion.rewrite import AssertionRewritingHook
@@ -25,7 +25,7 @@ def test_netmiko_ssh(capsys):
 
     # при закрытии сессии на stdout должно выводиться сообщение
     r1("close")
-    correct_stdout = "Соединение закрыто"
+    correct_stdout = "соединение закрыто"
     out, err = capsys.readouterr()
     assert out != "", "Сообщение об ошибке не выведено на stdout"
-    assert correct_stdout in out, "Выведено неправильное сообщение об ошибке"
+    assert correct_stdout in out.lower(), "Выведено неправильное сообщение об ошибке"

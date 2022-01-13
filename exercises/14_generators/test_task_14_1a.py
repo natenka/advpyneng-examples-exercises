@@ -6,7 +6,7 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_function_exists, check_function_params
+from advpyneng_helper_functions import check_function_exists, check_function_params
 
 
 # Проверка что тест вызван через pytest ..., а не python ...

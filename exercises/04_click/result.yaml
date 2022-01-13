@@ -1,0 +1,92 @@
+- - interface: Ethernet0/0
+    ip: 192.168.100.1
+    protocol: up
+    status: up
+  - interface: Ethernet0/1
+    ip: 192.168.200.1
+    protocol: up
+    status: up
+  - interface: Ethernet0/2
+    ip: unassigned
+    protocol: up
+    status: up
+  - interface: Ethernet0/3
+    ip: 192.168.130.1
+    protocol: up
+    status: up
+  - interface: Loopback22
+    ip: 10.2.2.2
+    protocol: up
+    status: up
+  - interface: Loopback33
+    ip: unassigned
+    protocol: up
+    status: up
+  - interface: Loopback55
+    ip: 5.5.5.5
+    protocol: up
+    status: up
+  - interface: Loopback99
+    ip: 10.0.99.1
+    protocol: up
+    status: up
+  - interface: Loopback100
+    ip: 10.1.1.100
+    protocol: up
+    status: up
+- - interface: Ethernet0/0
+    ip: 192.168.100.2
+    protocol: up
+    status: up
+  - interface: Ethernet0/1
+    ip: 10.100.23.2
+    protocol: up
+    status: up
+  - interface: Ethernet0/2
+    ip: unassigned
+    protocol: down
+    status: administratively down
+  - interface: Ethernet0/3
+    ip: unassigned
+    protocol: down
+    status: administratively down
+  - interface: Loopback0
+    ip: 10.2.2.2
+    protocol: up
+    status: up
+  - interface: Loopback9
+    ip: unassigned
+    protocol: up
+    status: up
+  - interface: Loopback19
+    ip: unassigned
+    protocol: up
+    status: up
+  - interface: Loopback99
+    ip: 10.0.99.1
+    protocol: up
+    status: up
+  - interface: Loopback100
+    ip: 10.100.100.2
+    protocol: up
+    status: up
+- - interface: Ethernet0/0
+    ip: 192.168.100.3
+    protocol: up
+    status: up
+  - interface: Ethernet0/1
+    ip: 10.100.23.3
+    protocol: up
+    status: up
+  - interface: Ethernet0/2
+    ip: unassigned
+    protocol: down
+    status: administratively down
+  - interface: Ethernet0/3
+    ip: unassigned
+    protocol: down
+    status: administratively down
+  - interface: Loopback99
+    ip: 10.0.99.1
+    protocol: up
+    status: up

@@ -5,7 +5,11 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_class_exists, check_attr_or_method, get_reach_unreach
+from advpyneng_helper_functions import (
+    check_class_exists,
+    check_attr_or_method,
+    get_reach_unreach,
+)
 
 
 # Проверка что тест вызван через pytest ..., а не python ...
@@ -26,9 +30,9 @@ def test_class():
     correct_return_value = get_reach_unreach(list_of_ips)
 
     net1 = task_11_1.IPv4Network("8.8.4.0/29")
-    net1.allocate("8.8.4.2")
-    net1.allocate("8.8.4.4")
-    net1.allocate("8.8.4.6")
+    net1.allocate_ip("8.8.4.2")
+    net1.allocate_ip("8.8.4.4")
+    net1.allocate_ip("8.8.4.6")
 
     scan_net = task_11_2.PingNetwork(net1)
     assert scan_net._ping("8.8.4.4") in (

@@ -5,7 +5,11 @@ import sys
 
 sys.path.append("..")
 
-from common_functions import check_class_exists, check_attr_or_method, get_reach_unreach
+from advpyneng_helper_functions import (
+    check_class_exists,
+    check_attr_or_method,
+    get_reach_unreach,
+)
 
 
 # Проверка что тест вызван через pytest ..., а не python ...
@@ -36,9 +40,9 @@ def test_class():
     correct_return_value = get_reach_unreach(list_of_ips)
 
     net1 = task_9_1.IPv4Network("8.8.4.0/29")
-    net1.allocate("8.8.4.2")
-    net1.allocate("8.8.4.4")
-    net1.allocate("8.8.4.6")
+    net1.allocate_ip("8.8.4.2")
+    net1.allocate_ip("8.8.4.4")
+    net1.allocate_ip("8.8.4.6")
 
     scan_net = task_9_2.PingNetwork(net1)
     assert scan_net._ping("8.8.4.4") in (
@@ -50,6 +54,7 @@ def test_class():
     assert type(return_value) == tuple and all(
         type(item) == list for item in return_value
     ), "Метод scan должен возвращать кортеж с двумя списками"
+    reach, unreach = return_value
     assert (
-        return_value == correct_return_value
+        (sorted(reach), sorted(unreach)) == correct_return_value
     ), "Функция возвращает неправильное значение"

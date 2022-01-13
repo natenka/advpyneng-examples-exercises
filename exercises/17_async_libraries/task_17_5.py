@@ -2,38 +2,33 @@
 """
 Задание 17.5
 
-Создать сопрограмму (coroutine) configure_router. Сопрограмма подключается
-по SSH (с помощью netdev) к устройству и выполняет перечень команд
-в конфигурационном режиме на основании переданных аргументов.
+Создать сопрограмму (coroutine) configure_net_devices.
 
-При выполнении каждой команды, скрипт должен проверять результат на такие ошибки:
- * Invalid input detected, Incomplete command, Ambiguous command
+Параметры configure_net_devices:
+* devices - список словарей с параметрами подключения к устройствам
+* device_commands_map - словарь в котором указано на какое устройство
+  отправлять какие команды. Пример словаря - host_commands_dict
 
-Если при выполнении какой-то из команд возникла ошибка, должно
-генерироваться исключение ValueError с информацией о том, какая ошибка возникла,
-при выполнении какой команды и на каком устройстве, например:
-Команда "logging" выполнилась с ошибкой "Incomplete command" на устройстве 192.168.100.1
+Функция возвращает словарь:
 
-Параметры функции:
+* ключ - IP-адрес устройства с которого получен вывод
+* значение - вывод, который вернула функция configure_router для этого устройства или
+  исключение
 
-* device - словарь с параметрами подключения к устройству
-* config_commands - список команд или одна команда (строка), которые надо выполнить
+Сопрограмма configure_net_devices должна настраивать оборудование в соответствии
+со словарем device_commands_map - отправлять команды в значении на то оборудование,
+которое указано в ключе словаря. Оборудование должно настраиваться параллельно*.
+Для непосредственной настройки оборудования, надо использовать функцию
+configure_router из задания 17.4.
 
-Функция возвращает строку с результатами выполнения команды.
+Между словарем device_commands_map и списком словарей devices (параметры функции)
+может быть несоответствие. Например, в словаре device_commands_map могут быть
+устройства для которых не указаны параметры подключения в списке devices. И наоборот.
+Функция configure_net_devices должна отправлять команды только на те устройства
+для которых есть словарь с параметрами подключения в списке devices и команды
+в словаре device_commands_map.
 
-Примеры команд с ошибками:
-R1(config)#logging 0255.255.1
-                   ^
-% Invalid input detected at '^' marker.
-
-R1(config)#logging
-% Incomplete command.
-
-R1(config)#a
-% Ambiguous command:  "a"
-
-Запустить сопрограмму и проверить, что она работает корректно одним из устройств
-в файле devices_netmiko.yaml.
+Пример команд и словаря для проверки настройки есть в задании.
 
 При необходимости, можно использовать функции из предыдущих заданий
 и создавать дополнительные функции.
@@ -41,6 +36,28 @@ R1(config)#a
 Для заданий в этом разделе нет тестов!
 """
 
-# списки команд с ошибками и без:
-commands_with_errors = ["logging 0255.255.1", "logging", "a"]
-correct_commands = ["logging buffered 20010", "ip http server"]
+ospf = [
+    "router ospf 55",
+    "auto-cost reference-bandwidth 1000000",
+    "network 0.0.0.0 255.255.255.255 area 0",
+]
+logging_with_error = "logging 0255.255.1"
+logging_correct = "logging buffered 20010"
+
+host_commands_dict = {
+    "192.168.100.2": logging_correct,
+    "192.168.100.3": logging_with_error,
+    "192.168.100.1": ospf,
+}
+
+import asyncio
+import yaml
+
+
+
+
+if __name__ == "__main__":
+    with open("devices_scrapli.yaml") as f:
+        devices = yaml.safe_load(f)
+    pprint(asyncio.run(configure_net_devices(devices, host_commands_dict)))
+    pprint(asyncio.run(configure_net_devices(devices[1:], host_commands_dict)))
